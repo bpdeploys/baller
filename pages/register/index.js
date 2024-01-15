@@ -12,16 +12,17 @@ import Input from '../../components/Common/Input';
 import Dropdown from '../../components/Common/Dropdown';
 import Button from '../../components/Common/Button';
 
+// Hooks
+import useYupValidationResolver from '../../utils/hooks/useYupValidationResolver';
+
 // Data
 import constants from '../../utils/data/constants';
 
-// Icons & Images
-import BpLogo from '../../public/assets/imgs/svgs/homeLogo.svg';
+// Context
+import { useFormData } from '../../services/context';
 
 // Styles
 import styles from './register.module.scss';
-import { useFormData } from '../../services/context';
-import useYupValidationResolver from '../../utils/hooks/useYupValidationResolver';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
