@@ -3,8 +3,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "static": "next build && next export"
+    "start": "next start"
   },
   "dependencies": {
     "@capacitor/android": "^5.6.0",
