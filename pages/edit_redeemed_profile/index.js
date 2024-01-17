@@ -22,6 +22,7 @@ import styles from './editredeemedprofile.module.scss';
 // Hooks
 import { useFormData } from '../../services/context';
 import useYupValidationResolver from '../../utils/hooks/useYupValidationResolver';
+import { useHasMounted } from '../../utils/hooks/useHasMounted';
 
 // Services
 import { editRedeemedProfile } from '../../services/api';
@@ -57,6 +58,7 @@ const validationSchema = yup.object().shape({
 export default function EditRedeemedProfile() {
   const router = useRouter();
   const { data, setFormValues } = useFormData();
+  const { hasMounted } = useHasMounted();
   const { userData } = useUserData();
   const resolver = useYupValidationResolver(validationSchema);
   const { register, handleSubmit } = useForm({

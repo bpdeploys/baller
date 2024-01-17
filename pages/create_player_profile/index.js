@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -11,7 +11,6 @@ import Input from '../../components/Common/Input';
 import Dropdown from '../../components/Common/Dropdown';
 import Button from '../../components/Common/Button';
 import HeaderButtons from '../../components/Layout/HeaderButtons';
-import CustomDatePicker from '../../components/Common/CustomDatePicker';
 
 // Data
 import constants from '../../utils/data/constants';
@@ -25,9 +24,11 @@ import styles from './createplayerprofile.module.scss';
 // Hooks
 import { useFormData } from '../../services/context';
 import useYupValidationResolver from '../../utils/hooks/useYupValidationResolver';
+import { useLoading } from '../../utils/hooks/useLoading';
 
 // Services
-import { createPlayerProfile } from '../../services/api';
+import { createPlayerProfile, fetchAllNations } from '../../services/api';
+import MobileDatePicker from '../../components/Common/MobileDatePicker';
 
 const validationSchema = yup.object().shape({
   playingPosition: yup.string().required('Playing Position is required'),
@@ -44,11 +45,36 @@ export default function CreatePlayerProfile() {
   const { register, handleSubmit } = useForm({
     resolver,
   });
+  const { isLoading, startLoading, stopLoading } = useLoading();
 
-  const [date, setDate] = useState(null);
+  const [nations, setNations] = useState([]);
+  const [datePickerValue, setDatePickerValue] = useState(new Date());
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
-  // Format date to YYYY-MM-DD
-  const formattedDate = date ? date.toISOString().split('T')[0] : '';
+  const handleDatePickerSelect = (date) => {
+    setDatePickerValue(date);
+    setIsDatePickerOpen(false);
+  };
+
+  useEffect(() => {
+    const loadNations = async () => {
+      startLoading();
+      try {
+        const fetchedNations = await fetchAllNations();
+        const nationsOptions = fetchedNations.map((nation) => ({
+          value: nation.id,
+          label: nation.country,
+        }));
+        setNations(nationsOptions);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    loadNations();
+  }, []);
 
   const onSubmit = async (values) => {
     setFormValues(values);
@@ -60,12 +86,11 @@ export default function CreatePlayerProfile() {
       password: data?.password,
       type: data?.type,
       gender: data?.gender,
-      // nationality: data?.nationality || values.nationality,
-      nationality: 1,
+      nationality: data?.nationality || values.nationality,
       playing_position: data?.playingPosition || values.playingPosition,
       second_nationality: data?.secondNationality,
       motive: data?.motive || values.motive,
-      dob: formattedDate,
+      dob: datePickerValue.toISOString().split('T')[0],
       // postcode: data?.postcode || values.postcode,
       sport: data?.sport,
     };
@@ -113,6 +138,8 @@ export default function CreatePlayerProfile() {
     { href: '/create_player_profile', text: 'Create Account' },
   ];
 
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <>
       <Head>
@@ -139,22 +166,33 @@ export default function CreatePlayerProfile() {
               items={constants.MOTIVES}
               {...register('motive')}
             />
-            <Input
+            <Dropdown
               name="nationality"
-              placeholder="Nationality"
+              placeholder="Main Nationality"
+              items={nations}
               {...register('nationality')}
+            />
+            <Dropdown
+              name="secondNationality"
+              placeholder="2nd Nationality"
+              items={nations}
+              {...register('secondNationality')}
             />
             <Input
               name="postcode"
               placeholder="First Half of Postcode"
               {...register('postcode')}
             />
-            <CustomDatePicker
-              name="DOB"
-              placeholder="DOB"
-              value={date}
-              onChange={(date) => setDate(date)}
-            />
+            <div onClick={() => setIsDatePickerOpen(true)}>
+              <MobileDatePicker
+                value={datePickerValue}
+                isOpen={isDatePickerOpen}
+                onSelect={handleDatePickerSelect}
+                onCancel={() => setIsDatePickerOpen(false)}
+                name="DOB"
+                placeholder="DOB"
+              />
+            </div>
           </div>
           <div className={styles.createPlayerProfile__button}>
             <Button

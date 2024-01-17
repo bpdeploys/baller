@@ -70,6 +70,7 @@ export default function CreateSquad() {
         toast.error('Something went wrong');
       }
     } catch (error) {
+      toast.error('Something went wrong');
       console.log(error);
     }
   };

@@ -7,6 +7,12 @@
   justify-content: space-between;
   align-items: center;
 
+  &__datePicker {
+    .datepicker.default .datepicker-header {
+      color: red !important;
+    }
+  }
+
   &__inputs {
     display: flex;
     flex-direction: column;
@@ -22,7 +28,7 @@
     }
 
     fieldset {
-      margin-bottom: 6vh;
+      margin-bottom: 4.5vh;
     }
   }
 

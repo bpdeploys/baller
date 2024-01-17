@@ -29,3 +29,16 @@ html {
   background-color: #14193873;
   color: #fff;
 }
+
+.datepicker.default .datepicker-header {
+  color: #000 !important;
+}
+
+.datepicker.default .datepicker-wheel {
+  border-top: 1px solid #125b9f !important;
+  border-bottom: 1px solid #125b9f !important;
+}
+
+.datepicker.default .datepicker-navbar-btn {
+  color: #125b9f !important;
+}

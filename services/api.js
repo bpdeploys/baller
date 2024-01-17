@@ -54,6 +54,24 @@ export const createTeam = async (teamInformation) => {
   }
 };
 
+export const fetchAllNations = async () => {
+  try {
+    const response = await api.get('/nations/');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchAllPlayingPos = async () => {
+  try {
+    const response = await api.get('/playing-positions/');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getProxyData = async (code) => {
   try {
     const response = await api.get(`/players/proxy/get-proxy?code=${code}`);

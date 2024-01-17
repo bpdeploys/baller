@@ -17,8 +17,8 @@ const constants = {
     { label: 'F', value: 'Forward' },
   ],
   MOTIVES: [
-    { label: 'Recreational', value: 'Recreational' },
     { label: 'Competitive', value: 'Competitive' },
+    { label: 'Recreational', value: 'Recreational' },
   ],
   SQUAD_NUMBERS: [
     { label: '1', value: '1' },
