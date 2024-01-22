@@ -37,7 +37,7 @@ const ProfileSelect = ({ data, onClick }) => {
       </div>
       <Button
         text={available ? 'Select' : 'Not yet available'}
-        color="white"
+        color={available ? 'white' : 'gray'}
         onClick={onClick}
         disabled={!available}
       />

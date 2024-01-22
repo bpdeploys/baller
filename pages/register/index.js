@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -20,6 +21,7 @@ import constants from '../../utils/data/constants';
 
 // Context
 import { useFormData } from '../../services/context';
+import { useUserData } from '../../context/UserContext';
 
 // Styles
 import styles from './register.module.scss';
@@ -37,11 +39,16 @@ const validationSchema = Yup.object().shape({
 
 export default function Register() {
   const router = useRouter();
+  const { clearUserData } = useUserData();
   const { setFormValues } = useFormData();
   const resolver = useYupValidationResolver(validationSchema);
   const { handleSubmit, register } = useForm({
     resolver,
   });
+
+  useEffect(() => {
+    clearUserData();
+  }, []);
 
   const onSubmit = async (data) => {
     // Set the form values in the context

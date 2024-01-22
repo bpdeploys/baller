@@ -14,14 +14,12 @@ import useToggle from '../../utils/hooks/useToggle';
 
 export default function SelectSport() {
   const router = useRouter();
-  const { updateUserData } = useUserData();
+  const { clearUserData } = useUserData();
   const [isMenuOpen, toggleMenu] = useToggle();
 
   const handleLogout = (item) => {
-    updateUserData(null);
     handleLogoutStorage();
-    localStorage.removeItem('userData');
-    localStorage.removeItem('token');
+    clearUserData();
     router.push('/login');
   };
 

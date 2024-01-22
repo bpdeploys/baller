@@ -8,49 +8,57 @@ import ScreenWrapper from '../../components/Layout/ScreenWrapper';
 import Button from '../../components/Common/Button';
 
 // Styles
-import styles from './selectsportsprovider.module.scss';
+import styles from './selectvenue.module.scss';
 import SportsProviderBox from '../../components/SportsProvider/SportsProviderBox';
 
 // API
-import { fetchAllLeagueProviders } from '../../services/api';
+import { getAllVenuesByProvider } from '../../services/api';
 
 // Context
 import { useCreateTeamFormData } from '../../context/TeamContext';
 import { useLoading } from '../../utils/hooks/useLoading';
 
-export default function SelectSportsProvider() {
+export default function SelectVenue() {
   const router = useRouter();
-  const { setCreateTeamFormValues } = useCreateTeamFormData();
+  const { data, setCreateTeamFormValues } = useCreateTeamFormData();
 
-  const [sportOption, setSportOption] = useState(null);
-  const [sportsList, setSportsList] = useState([]);
+  const [venueOption, setVenueOption] = useState(null);
+  const [venueList, setVenueList] = useState([]);
 
   const { isLoading, startLoading, stopLoading } = useLoading();
 
+  const selectedProviderId = data?.provider?.id;
+
+  console.log(data);
+
   useEffect(() => {
-    const fetchSportsProviders = async () => {
+    const fetchAllVenuesByProvider = async () => {
       try {
         startLoading(); // Start loading
-        const providers = await fetchAllLeagueProviders();
-        setSportsList(providers);
+        const venues = await getAllVenuesByProvider(selectedProviderId);
+        setVenueList(venues);
         stopLoading(); // Stop loading after data is fetched
       } catch (error) {
-        console.error('Error fetching sports providers:', error);
+        console.error('Error fetching venues:', error);
         stopLoading(); // Stop loading in case of error
       }
     };
 
-    fetchSportsProviders();
-  }, []);
+    if (selectedProviderId) {
+      fetchAllVenuesByProvider();
+    } else {
+      stopLoading(); // Ensure loading is stopped if no provider ID is present
+    }
+  }, [selectedProviderId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       startLoading(); // Start loading
       setCreateTeamFormValues({
-        provider: sportOption,
+        venue: venueOption,
       });
-      await router.push('/select_venue');
+      await router.push('/create_team');
       stopLoading(); // Stop loading after navigation
     } catch (error) {
       console.error('Error saving data or navigating:', error);
@@ -58,8 +66,8 @@ export default function SelectSportsProvider() {
     }
   };
 
-  const handleSportOption = (item) => {
-    setSportOption(item);
+  const handleVenueOption = (item) => {
+    setVenueOption(item);
   };
 
   if (isLoading) {
@@ -80,11 +88,11 @@ export default function SelectSportsProvider() {
         />
         <div className={styles.providersWrapper}>
           <div className={styles.providers}>
-            {sportsList.map((provider) => (
+            {venueList.map((provider) => (
               <SportsProviderBox
                 provider={provider}
-                selected={sportOption === provider}
-                onClick={() => handleSportOption(provider)}
+                selected={venueOption === provider}
+                onClick={() => handleVenueOption(provider)}
               />
             ))}
           </div>

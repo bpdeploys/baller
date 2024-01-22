@@ -27,7 +27,11 @@ import useYupValidationResolver from '../../utils/hooks/useYupValidationResolver
 import { useLoading } from '../../utils/hooks/useLoading';
 
 // Services
-import { createPlayerProfile, fetchAllNations } from '../../services/api';
+import {
+  createPlayerProfile,
+  fetchAllNations,
+  fetchAllPlayingPositions,
+} from '../../services/api';
 import MobileDatePicker from '../../components/Common/MobileDatePicker';
 
 const validationSchema = yup.object().shape({
@@ -48,6 +52,7 @@ export default function CreatePlayerProfile() {
   const { isLoading, startLoading, stopLoading } = useLoading();
 
   const [nations, setNations] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [datePickerValue, setDatePickerValue] = useState(new Date());
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
@@ -57,15 +62,26 @@ export default function CreatePlayerProfile() {
   };
 
   useEffect(() => {
-    const loadNations = async () => {
+    const loadData = async () => {
       startLoading();
+
+      const selectedSport = data.sport;
+
       try {
         const fetchedNations = await fetchAllNations();
+        const fetchedPositions = await fetchAllPlayingPositions();
         const nationsOptions = fetchedNations.map((nation) => ({
           value: nation.id,
           label: nation.country,
         }));
+        const positionsOptions = fetchedPositions
+          .filter((position) => position.sport === selectedSport)
+          .map((position) => ({
+            value: position.id,
+            label: `${position.playing_position} (${position.abbreviated})`,
+          }));
         setNations(nationsOptions);
+        setPositions(positionsOptions);
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -73,7 +89,7 @@ export default function CreatePlayerProfile() {
       }
     };
 
-    loadNations();
+    loadData();
   }, []);
 
   const onSubmit = async (values) => {
@@ -87,7 +103,8 @@ export default function CreatePlayerProfile() {
       type: data?.type,
       gender: data?.gender,
       nationality: data?.nationality || values.nationality,
-      playing_position: data?.playingPosition || values.playingPosition,
+      playing_position:
+        parseInt(data?.playingPosition) || parseInt(values.playingPosition),
       second_nationality: data?.secondNationality,
       motive: data?.motive || values.motive,
       dob: datePickerValue.toISOString().split('T')[0],
@@ -113,7 +130,7 @@ export default function CreatePlayerProfile() {
         }
 
         if (userData) {
-          updateUserData(userData); // Update global user data
+          updateUserData(userData, { realId: response.id }); // Update global user data
           localStorage.setItem('token', response.token); // Save token to local storage
           router.push('/create_team');
         } else {
@@ -157,7 +174,7 @@ export default function CreatePlayerProfile() {
             <Dropdown
               name="playingPosition"
               placeholder="Playing Position"
-              items={constants.POSITIONS}
+              items={positions}
               {...register('playingPosition')}
             />
             <Dropdown

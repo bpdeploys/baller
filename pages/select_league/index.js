@@ -3,36 +3,39 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 // Components
-import Header from '../../components/Layout/Header';
 import ScreenWrapper from '../../components/Layout/ScreenWrapper';
 import Button from '../../components/Common/Button';
 
 // Styles
 import styles from './selectsportsprovider.module.scss';
-import SportsProviderBox from '../../components/SportsProvider/SportsProviderBox';
-
 // API
-import { fetchAllLeagueProviders } from '../../services/api';
+import { getAllLeaguesByVenue, updateLeague } from '../../services/api';
 
 // Context
 import { useCreateTeamFormData } from '../../context/TeamContext';
 import { useLoading } from '../../utils/hooks/useLoading';
+import { useUserData } from '../../context/UserContext';
+import LeagueSelectionBox from '../../components/SportsProvider/LeagueSelectionBox';
+import { toast } from 'react-toastify';
 
-export default function SelectSportsProvider() {
+export default function SelectLeague() {
   const router = useRouter();
   const { setCreateTeamFormValues } = useCreateTeamFormData();
+  const { userData, updateUserData } = useUserData();
 
-  const [sportOption, setSportOption] = useState(null);
-  const [sportsList, setSportsList] = useState([]);
+  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [leaguesList, setLeaguesList] = useState([]);
 
   const { isLoading, startLoading, stopLoading } = useLoading();
+
+  const isAnyLeagueSelected = selectedLeague !== null;
 
   useEffect(() => {
     const fetchSportsProviders = async () => {
       try {
         startLoading(); // Start loading
-        const providers = await fetchAllLeagueProviders();
-        setSportsList(providers);
+        const leagues = await getAllLeaguesByVenue(userData?.team?.venue);
+        setLeaguesList(leagues);
         stopLoading(); // Stop loading after data is fetched
       } catch (error) {
         console.error('Error fetching sports providers:', error);
@@ -45,21 +48,27 @@ export default function SelectSportsProvider() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const leagueInfo = {
+      league: selectedLeague?.id,
+    };
+
     try {
-      startLoading(); // Start loading
-      setCreateTeamFormValues({
-        provider: sportOption,
-      });
-      await router.push('/select_venue');
-      stopLoading(); // Stop loading after navigation
+      const request = await updateLeague(userData?.team?.id, leagueInfo);
+      if (request) {
+        toast.success(`Your team succesfully joined ${selectedLeague.name}`);
+        if (!userData?.league?.id) {
+          updateUserData({ league: request });
+        }
+      }
+      // router.push('/create_squad');
     } catch (error) {
-      console.error('Error saving data or navigating:', error);
-      stopLoading(); // Stop loading in case of error
+      toast.error(error.message);
     }
   };
 
-  const handleSportOption = (item) => {
-    setSportOption(item);
+  const handleselectedLeague = (item) => {
+    setSelectedLeague(item);
   };
 
   if (isLoading) {
@@ -73,23 +82,25 @@ export default function SelectSportsProvider() {
         <meta name="description" content="Baller App" key="desc" />
       </Head>
       <ScreenWrapper background="white" image="grayLightning" positionY="450px">
-        <Header
-          text="Select Sports Provider"
-          textTransform="capitalize"
-          noItalic
-        />
         <div className={styles.providersWrapper}>
+          <h1>Join a League</h1>
           <div className={styles.providers}>
-            {sportsList.map((provider) => (
-              <SportsProviderBox
-                provider={provider}
-                selected={sportOption === provider}
-                onClick={() => handleSportOption(provider)}
+            {leaguesList.map((league) => (
+              <LeagueSelectionBox
+                league={league}
+                selected={selectedLeague === league}
+                onClick={() => handleselectedLeague(league)}
+                isAnyLeagueSelected={isAnyLeagueSelected}
               />
             ))}
           </div>
           <div className={styles.providers__button}>
-            <Button text="DONE" color="blue" uppercase onClick={handleSubmit} />
+            <Button
+              text="Confirm entry"
+              color={selectedLeague ? 'blue' : 'gray'}
+              onClick={handleSubmit}
+              disabled={!selectedLeague}
+            />
           </div>
         </div>
       </ScreenWrapper>

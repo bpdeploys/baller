@@ -29,6 +29,13 @@ export default function MobileDatePicker({
     12: 'Dec',
   };
 
+  // Calculate the minimum and maximum dates
+  const currentDate = new Date();
+  const minDate = new Date();
+  minDate.setFullYear(currentDate.getFullYear() - 80); // 80 years ago
+  const maxDate = new Date();
+  maxDate.setFullYear(currentDate.getFullYear() - 8); // 8 years ago
+
   const dateConfig = {
     year: {
       format: 'YYYY',
@@ -71,6 +78,8 @@ export default function MobileDatePicker({
         confirmText="Confirm"
         cancelText="Cancel"
         dateConfig={dateConfig}
+        min={minDate}
+        max={maxDate}
       />
     </>
   );

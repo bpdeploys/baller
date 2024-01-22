@@ -63,6 +63,15 @@ export const fetchAllNations = async () => {
   }
 };
 
+export const fetchAllPlayingPositions = async () => {
+  try {
+    const response = await api.get('/playing-positions/');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const fetchAllPlayingPos = async () => {
   try {
     const response = await api.get('/playing-positions/');
@@ -75,6 +84,86 @@ export const fetchAllPlayingPos = async () => {
 export const getProxyData = async (code) => {
   try {
     const response = await api.get(`/players/proxy/get-proxy?code=${code}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while fetching proxy data');
+  }
+};
+
+export const updateLeague = async (teamId, leagueId) => {
+  try {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const headers = {
+      Authorization: `Token ${token}`,
+    };
+
+    const response = await api.patch(`/teams/${teamId}`, leagueId, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while joining a league');
+  }
+};
+
+export const updateCaptainSquadNumber = async (playerId, data) => {
+  try {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const headers = {
+      Authorization: `Token ${token}`,
+    };
+
+    const response = await api.patch(`/players/${playerId}`, data, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while joining a league');
+  }
+};
+
+export const getAllVenuesByProvider = async (providerId) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    const headers = {
+      Authorization: `Token ${token}`,
+    };
+
+    const response = await api.get(`/venues?entity_id=${providerId}`, {
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while fetching proxy data');
+  }
+};
+
+export const getAllLeaguesByVenue = async (venueId) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    const headers = {
+      Authorization: `Token ${token}`,
+    };
+
+    const response = await api.get(`/leagues?venue_id=${venueId}`, {
+      headers,
+    });
     return response.data;
   } catch (error) {
     console.error(error);

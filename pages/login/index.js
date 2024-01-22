@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -34,7 +35,11 @@ export default function Login() {
   const { register, handleSubmit } = useForm({
     resolver,
   });
-  const { userData, updateUserData } = useUserData();
+  const { updateUserData, clearUserData } = useUserData();
+
+  useEffect(() => {
+    clearUserData();
+  }, []);
 
   const onSubmit = async (values) => {
     const loginCredentials = {

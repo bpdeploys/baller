@@ -1,0 +1,77 @@
+.mainContainer {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #dfdfdf;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 10px 14px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.mainHeader {
+  border-radius: 2px;
+  background: #f2f2f2;
+  margin: 0;
+  margin: 6px 11px;
+  padding: 9px 19px;
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  h4 {
+    font-size: 12px;
+  }
+}
+
+.content {
+  margin: 6px 11px;
+
+  p {
+    font-size: 15px;
+    margin-bottom: 9px;
+  }
+}
+
+.joinButton {
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 4px 10px;
+  position: absolute;
+  bottom: 26px;
+  right: 16px;
+}
+
+.joinButtonSelected {
+  background-color: #36a310;
+  // Additional styles for the selected state
+}
+
+.joinButtonNotSelected {
+  background: #dd0606;
+}
+
+.joinButtonDisabled {
+  background-color: #d9d9d9;
+  // Additional styles for the disabled state
+}
+
+.bpChampLeague {
+  font-size: 12px;
+  width: 140px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #125b9f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 11px;
+  bottom: 9px;
+}

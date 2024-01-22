@@ -28,8 +28,18 @@ export default function UserProvider({ children }) {
     }));
   };
 
+  const clearUserData = () => {
+    setUserData(null); // Set userData to null or {}
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('userData');
+      localStorage.removeItem('token');
+      localStorage.removeItem('squadList');
+      localStorage.removeItem('tutorialCompleted');
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ userData, updateUserData }}>
+    <UserContext.Provider value={{ userData, updateUserData, clearUserData }}>
       {children}
     </UserContext.Provider>
   );

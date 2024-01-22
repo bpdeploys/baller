@@ -31,8 +31,8 @@ const CurrentPlayer = ({ data, onClick }) => {
           F{/* {abbreviatePosition(data?.playingPosition)} */}
         </span>
       </div>
-      <small>{data?.lastName || 'GBO'}</small>
-      <h3>{data?.firstName || 'Dimitri'}</h3>
+      <small>{data?.lastName || 'Last name'}</small>
+      <h3>{data?.firstName || 'First name'}</h3>
     </div>
   );
 };

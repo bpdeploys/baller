@@ -85,6 +85,12 @@ export default function CreateSquad() {
     return <div>Loading...</div>; // Or any other placeholder content
   }
 
+  const captainInfo = {
+    firstName: userData?.first_name,
+    lastName: userData?.last_name,
+    squadNumber: userData?.captain_squad_number,
+  };
+
   return (
     <>
       <Head>
@@ -97,7 +103,7 @@ export default function CreateSquad() {
         <div className={styles.createSquad}>
           <h1>Create a squad of players to join your team.</h1>
           <div className={styles.createSquad__squadPlayers}>
-            <CurrentPlayer onClick={onCurrentPlayerUpdate} />
+            <CurrentPlayer data={captainInfo} onClick={onCurrentPlayerUpdate} />
             {squadList
               .map((player) => <SquadPlayer key={player.id} data={player} />)
               .concat(

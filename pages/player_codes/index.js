@@ -21,8 +21,10 @@ import { useHasMounted } from '../../utils/hooks/useHasMounted';
 
 // Styles
 import styles from './playercodes.module.scss';
+import { useRouter } from 'next/router';
 
 export default function PlayerCodes() {
+  const router = useRouter();
   const { userData } = useUserData();
   const { isLoading, startLoading, stopLoading } = useLoading();
   const hasMounted = useHasMounted();
@@ -44,6 +46,7 @@ export default function PlayerCodes() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    router.push('/select_league');
   };
 
   const handleShare = () => {

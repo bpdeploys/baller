@@ -56,9 +56,8 @@ export default function CreateTeam() {
     e.preventDefault();
     const teamInformation = {
       team_name: teamName,
-      // sport_entity: data?.provider?.id,
-      sport_entity: 1,
-      venue: 1,
+      sport_entity: data?.provider?.id,
+      venue: data?.venue?.id,
       kit: data?.kitValidation,
       sport: 'Football',
       number: data?.kitSquadNumber,
@@ -100,7 +99,7 @@ export default function CreateTeam() {
             >
               <div className={styles.sportsProvider}>
                 <span>Provider: {data?.provider?.name || 'None'}</span>
-                <span>Venue: {data?.provider?.venues[0]?.name || 'None'}</span>
+                <span>Venue: {data?.venue?.name || 'None'}</span>
               </div>
             </CreateTeamBox>
             <CreateTeamBox
