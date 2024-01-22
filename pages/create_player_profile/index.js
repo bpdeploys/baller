@@ -61,6 +61,7 @@ export default function CreatePlayerProfile() {
     setIsDatePickerOpen(false);
   };
 
+  // Get data to populate necessary dropdowns
   useEffect(() => {
     const loadData = async () => {
       startLoading();

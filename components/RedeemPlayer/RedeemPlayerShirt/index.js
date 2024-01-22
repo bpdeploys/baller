@@ -9,7 +9,7 @@ import styles from './redeemplayershirt.module.scss';
  *
  * @returns {React.Element} A Squad teammate info element
  */
-const RedeemPlayerShirt = ({ data, size }) => {
+const RedeemPlayerShirt = ({ data, size, captain }) => {
   return (
     <div
       className={
@@ -25,6 +25,7 @@ const RedeemPlayerShirt = ({ data, size }) => {
           alt={data?.id || 'Blue Player Shirt'}
         />
         <span className={styles.squadNumber}>{data?.squadNumber}</span>
+        {captain && <span className={styles.playingPositionCap}>C</span>}
         {data?.playingPosition && (
           <span
             className={

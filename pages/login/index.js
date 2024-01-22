@@ -48,6 +48,7 @@ export default function Login() {
     };
 
     try {
+      clearUserData();
       const response = await loginRequest(loginCredentials);
       if (response.key) {
         // Check for each role and update user data if found

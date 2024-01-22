@@ -51,6 +51,7 @@ export default function Register() {
   }, []);
 
   const onSubmit = async (data) => {
+    clearUserData();
     // Set the form values in the context
     setFormValues(data);
 

@@ -82,7 +82,7 @@ export default function SelectSquadNumber() {
             onChange={(e) => setSelectedNumber(e.target.value)}
           />
           <div className={styles.selectSquadNumber__shirt}>
-            <RedeemPlayerShirt data={sampleData} size="big" />
+            <RedeemPlayerShirt data={sampleData} size="big" captain />
             <div className={styles.selectSquadNumber__info}>
               <span>Captain of</span>
               <h2>{userData?.team?.team_name}</h2>

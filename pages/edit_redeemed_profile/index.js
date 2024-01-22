@@ -57,7 +57,6 @@ const validationSchema = yup.object().shape({
 
 export default function EditRedeemedProfile() {
   const router = useRouter();
-  const { data, setFormValues } = useFormData();
   const { hasMounted } = useHasMounted();
   const { userData } = useUserData();
   const resolver = useYupValidationResolver(validationSchema);
@@ -79,6 +78,32 @@ export default function EditRedeemedProfile() {
       toast.error(error.message);
     });
   };
+
+  // // Get data to populate necessary dropdowns
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     startLoading();
+
+  //     const selectedSport = data.sport;
+
+  //     try {
+  //       const fetchedPositions = await fetchAllPlayingPositions();
+  //       const positionsOptions = fetchedPositions
+  //         .filter((position) => position.sport === selectedSport)
+  //         .map((position) => ({
+  //           value: position.id,
+  //           label: `${position.playing_position} (${position.abbreviated})`,
+  //         }));
+  //       setPositions(positionsOptions);
+  //     } catch (error) {
+  //       toast.error(error.message);
+  //     } finally {
+  //       stopLoading();
+  //     }
+  //   };
+
+  //   loadData();
+  // }, []);
 
   const shirtData = {
     squadNumber: userData?.squad_number[0]?.number || 10,

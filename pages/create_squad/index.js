@@ -103,9 +103,15 @@ export default function CreateSquad() {
         <div className={styles.createSquad}>
           <h1>Create a squad of players to join your team.</h1>
           <div className={styles.createSquad__squadPlayers}>
-            <CurrentPlayer data={captainInfo} onClick={onCurrentPlayerUpdate} />
+            <CurrentPlayer
+              data={captainInfo}
+              onClick={onCurrentPlayerUpdate}
+              captain
+            />
             {squadList
-              .map((player) => <SquadPlayer key={player.id} data={player} />)
+              .map((player, key) => (
+                <SquadPlayer key={player.id + key} data={player} />
+              ))
               .concat(
                 Array.from(
                   { length: Math.max(0, 11 - squadList.length) },

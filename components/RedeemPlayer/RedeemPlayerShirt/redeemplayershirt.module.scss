@@ -4,6 +4,9 @@
   align-items: center;
   width: 100%;
 
+  .captainPosition {
+    background-color: white;
+  }
   .imageWrapper {
     position: relative;
 
@@ -20,6 +23,18 @@
       font-size: 20px;
     }
 
+    .playingPositionCap {
+      background-color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      bottom: 5px;
+      left: 10px;
+      transform: translate(0, 0);
+      border: 1px solid #c5be0b;
+    }
+
     .playingPosition,
     .playingPositionGk {
       background-color: #fff;
@@ -33,7 +48,8 @@
       border: 1px solid #125b9f;
     }
 
-    .playingPosition {
+    .playingPosition,
+    .playingPositionCap {
       font-size: 10px;
       padding: 2.5px 4px;
     }
@@ -85,6 +101,18 @@
       line-height: normal;
     }
 
+    .playingPositionCap {
+      background-color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      text-align: center;
+      bottom: 25px;
+      left: 40px;
+      transform: translate(0, 0);
+      border: 1px solid #125b9f;
+    }
+
     .playingPosition,
     .playingPositionGk {
       background-color: #fff;
@@ -98,9 +126,10 @@
       border: 1px solid #125b9f;
     }
 
-    .playingPosition {
+    .playingPosition,
+    .playingPositionCap {
       font-size: 40px;
-      padding: 2.5px 4px;
+      padding: 2.5px;
     }
 
     .playingPositionGk {

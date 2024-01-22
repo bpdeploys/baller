@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
 // Context
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SquadContext } from '../../context/SquadContext';
 import { useFormData } from '../../services/context';
 
@@ -24,6 +24,9 @@ import constants from '../../utils/data/constants';
 
 // Styles
 import styles from './createteammate.module.scss';
+import { useUserData } from '../../context/UserContext';
+import { useLoading } from '../../utils/hooks/useLoading';
+import { fetchAllPlayingPositions } from '../../services/api';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
@@ -35,13 +38,46 @@ const validationSchema = Yup.object().shape({
 
 export default function CreateTeammate() {
   const router = useRouter();
+
+  const { userData } = useUserData();
   const { setFormValues } = useFormData();
-  const hasMounted = useHasMounted();
   const { addTeammate } = useContext(SquadContext);
+
+  const hasMounted = useHasMounted();
+  const { isLoading, startLoading, stopLoading } = useLoading();
+
   const resolver = useYupValidationResolver(validationSchema);
   const { handleSubmit, register, setValue } = useForm({
     resolver,
   });
+
+  const [positions, setPositions] = useState(null);
+
+  // Get data to populate necessary dropdowns
+  useEffect(() => {
+    const loadData = async () => {
+      startLoading();
+
+      const selectedSport = userData?.team?.sport || 'Football';
+
+      try {
+        const fetchedPositions = await fetchAllPlayingPositions();
+        const positionsOptions = fetchedPositions
+          .filter((position) => position.sport === selectedSport)
+          .map((position) => ({
+            value: position.id,
+            label: `${position.playing_position} (${position.abbreviated})`,
+          }));
+        setPositions(positionsOptions);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    loadData();
+  }, []);
 
   const onSubmit = async (data) => {
     setFormValues(data);
@@ -80,6 +116,10 @@ export default function CreateTeammate() {
     }
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Head>
@@ -116,7 +156,7 @@ export default function CreateTeammate() {
             <Dropdown
               name="playingPosition"
               placeholder="Playing Position"
-              items={constants.POSITIONS}
+              items={positions}
               {...register('playingPosition')}
             />
             <Dropdown

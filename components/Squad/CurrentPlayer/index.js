@@ -9,14 +9,13 @@ import styles from './sportselect.module.scss';
  *
  * @returns {React.Element} A Squad teammate info element
  */
-const CurrentPlayer = ({ data, onClick }) => {
+const CurrentPlayer = ({ data, onClick, captain }) => {
   return (
     <div className={styles.squadPlayer} onClick={onClick}>
       <div className={styles.squadPlayer__imageWrapper}>
         <img
           width={70}
           height={80}
-          priority
           src="/assets/imgs/svgs/blue-shirt.svg"
           alt={data?.id || 'Blue Player Shirt'}
         />
@@ -30,6 +29,7 @@ const CurrentPlayer = ({ data, onClick }) => {
         >
           F{/* {abbreviatePosition(data?.playingPosition)} */}
         </span>
+        {captain && <span className={styles.playingPositionCap}>C</span>}
       </div>
       <small>{data?.lastName || 'Last name'}</small>
       <h3>{data?.firstName || 'First name'}</h3>

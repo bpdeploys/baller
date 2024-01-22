@@ -25,7 +25,6 @@ const SquadPlayer = ({ data, empty, disabled }) => {
           <img
             width={70}
             height={80}
-            priority
             src="/assets/imgs/svgs/gray-shirt.svg"
             alt="Gray Player Shirt"
           />
@@ -40,7 +39,6 @@ const SquadPlayer = ({ data, empty, disabled }) => {
         <img
           width={70}
           height={80}
-          priority
           src="/assets/imgs/svgs/blue-shirt.svg"
           alt={data?.id || 'Blue Player Shirt'}
         />
