@@ -3,6 +3,7 @@ import styles from './leagueselectionbox.module.scss';
 
 function LeagueSelectionBox({
   selected,
+  deselect,
   league,
   onClick,
   isAnyLeagueSelected,
@@ -10,6 +11,11 @@ function LeagueSelectionBox({
   const leagueProviderSelectClasses = `${styles.mainContainer} ${
     selected ? styles.selected : ''
   }`;
+
+  const handleDeselect = (event) => {
+    event.stopPropagation(); // Prevent onClick of parent div
+    deselect();
+  };
 
   const joinButtonClasses = `${styles.joinButton} ${
     selected
@@ -33,6 +39,14 @@ function LeagueSelectionBox({
           Start date: {league?.season?.begin_date}
         </p>
       </div>
+      {isAnyLeagueSelected && selected ? (
+        <button
+          className={`${styles.removeButton} ${styles.joinButtonDisabled}`}
+          onClick={handleDeselect}
+        >
+          Remove
+        </button>
+      ) : null}
       <button
         className={joinButtonClasses}
         disabled={isAnyLeagueSelected && !selected}

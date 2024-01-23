@@ -1,26 +1,25 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 // Components
 import ScreenWrapper from '../../components/Layout/ScreenWrapper';
 import Button from '../../components/Common/Button';
+import LeagueSelectionBox from '../../components/SportsProvider/LeagueSelectionBox';
 
 // Styles
 import styles from './selectsportsprovider.module.scss';
+
 // API
 import { getAllLeaguesByVenue, updateLeague } from '../../services/api';
 
-// Context
-import { useCreateTeamFormData } from '../../context/TeamContext';
+// Hooks
 import { useLoading } from '../../utils/hooks/useLoading';
+
+// Context
 import { useUserData } from '../../context/UserContext';
-import LeagueSelectionBox from '../../components/SportsProvider/LeagueSelectionBox';
-import { toast } from 'react-toastify';
 
 export default function SelectLeague() {
-  const router = useRouter();
-  const { setCreateTeamFormValues } = useCreateTeamFormData();
   const { userData, updateUserData } = useUserData();
 
   const [selectedLeague, setSelectedLeague] = useState(null);
@@ -56,7 +55,9 @@ export default function SelectLeague() {
     try {
       const request = await updateLeague(userData?.team?.id, leagueInfo);
       if (request) {
-        toast.success(`Your team succesfully joined ${selectedLeague.name}`);
+        toast.success(
+          `Your team succesfully joined ${selectedLeague.league_name}`
+        );
         if (!userData?.league?.id) {
           updateUserData({ league: request });
         }
@@ -89,6 +90,7 @@ export default function SelectLeague() {
               <LeagueSelectionBox
                 league={league}
                 selected={selectedLeague === league}
+                deselect={() => setSelectedLeague(null)}
                 onClick={() => handleselectedLeague(league)}
                 isAnyLeagueSelected={isAnyLeagueSelected}
               />

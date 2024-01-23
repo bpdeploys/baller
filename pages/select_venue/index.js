@@ -29,8 +29,6 @@ export default function SelectVenue() {
 
   const selectedProviderId = data?.provider?.id;
 
-  console.log(data);
-
   useEffect(() => {
     const fetchAllVenuesByProvider = async () => {
       try {

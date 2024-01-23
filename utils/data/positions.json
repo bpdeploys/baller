@@ -1,0 +1,142 @@
+[
+  {
+    "id": 20,
+    "sport": "Football",
+    "pitch_position": "Mid",
+    "playing_position": "Left",
+    "abbreviated": "M"
+  },
+  {
+    "id": 1,
+    "sport": "Football",
+    "pitch_position": "Goalkeeper",
+    "playing_position": "Goalkeeper",
+    "abbreviated": "GK"
+  },
+  {
+    "id": 2,
+    "sport": "Football",
+    "pitch_position": "Defender",
+    "playing_position": "Right Back",
+    "abbreviated": "D"
+  },
+  {
+    "id": 3,
+    "sport": "Football",
+    "pitch_position": "Defender",
+    "playing_position": "Centre Back",
+    "abbreviated": "D"
+  },
+  {
+    "id": 4,
+    "sport": "Football",
+    "pitch_position": "Defender",
+    "playing_position": "Left Back",
+    "abbreviated": "D"
+  },
+  {
+    "id": 5,
+    "sport": "Football",
+    "pitch_position": "Midfielder",
+    "playing_position": "Defensive Midfielder",
+    "abbreviated": "M"
+  },
+  {
+    "id": 6,
+    "sport": "Football",
+    "pitch_position": "Midfielder",
+    "playing_position": "Centre Midfielder",
+    "abbreviated": "M"
+  },
+  {
+    "id": 7,
+    "sport": "Football",
+    "pitch_position": "Midfielder",
+    "playing_position": "Attacking Midfielder",
+    "abbreviated": "M"
+  },
+  {
+    "id": 8,
+    "sport": "Football",
+    "pitch_position": "Midfielder",
+    "playing_position": "Left Winger",
+    "abbreviated": "M"
+  },
+  {
+    "id": 9,
+    "sport": "Football",
+    "pitch_position": "Midfielder",
+    "playing_position": "Right Winger",
+    "abbreviated": "M"
+  },
+  {
+    "id": 10,
+    "sport": "Football",
+    "pitch_position": "Striker",
+    "playing_position": "False Nine",
+    "abbreviated": "F"
+  },
+  {
+    "id": 11,
+    "sport": "Football",
+    "pitch_position": "Striker",
+    "playing_position": "Striker",
+    "abbreviated": "F"
+  },
+  {
+    "id": 12,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Point Guard",
+    "abbreviated": "PG"
+  },
+  {
+    "id": 13,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Shooting Guard",
+    "abbreviated": "SG"
+  },
+  {
+    "id": 14,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Wingman",
+    "abbreviated": "WNG"
+  },
+  {
+    "id": 15,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Small Forward",
+    "abbreviated": "SF"
+  },
+  {
+    "id": 16,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Power Forward",
+    "abbreviated": "PF"
+  },
+  {
+    "id": 17,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Center",
+    "abbreviated": "C"
+  },
+  {
+    "id": 18,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Tweener",
+    "abbreviated": "TWN"
+  },
+  {
+    "id": 19,
+    "sport": "Basketball",
+    "pitch_position": "",
+    "playing_position": "Point Centre",
+    "abbreviated": "PC"
+  }
+]

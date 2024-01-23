@@ -41,7 +41,7 @@ export default function CreateTeammate() {
 
   const { userData } = useUserData();
   const { setFormValues } = useFormData();
-  const { addTeammate } = useContext(SquadContext);
+  const { squadList, addTeammate } = useContext(SquadContext);
 
   const hasMounted = useHasMounted();
   const { isLoading, startLoading, stopLoading } = useLoading();
@@ -80,9 +80,27 @@ export default function CreateTeammate() {
   }, []);
 
   const onSubmit = async (data) => {
-    setFormValues(data);
-    addTeammate(data);
-    router.push('/create_squad');
+    // Check for duplicate squad number
+    const isDuplicateSquadNumber = squadList.some(
+      (teammate) => teammate.squadNumber === data.squadNumber
+    );
+
+    if (isDuplicateSquadNumber) {
+      toast.error(
+        'This squad number is already taken. Please choose a different number.'
+      );
+      return;
+    }
+
+    // If squad number is not duplicate, proceed to add teammate
+    try {
+      setFormValues(data);
+      addTeammate(data);
+      toast.success('Teammate created successfully!');
+      router.push('/create_squad');
+    } catch (error) {
+      toast.error('Failed to create teammate.');
+    }
   };
 
   const onError = (errors) => {

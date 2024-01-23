@@ -2,6 +2,12 @@
 import styles from './sportselect.module.scss';
 import Link from 'next/link';
 import { abbreviatePosition } from '../../../utils/functions';
+import positionsData from '../../../utils/data/positions.json';
+
+const getPlayingPositionById = (id) => {
+  const position = positionsData.find((p) => p.id === id);
+  return position ? position.abbreviated : null;
+};
 
 /**
  * Squad teammate info component
@@ -13,6 +19,10 @@ import { abbreviatePosition } from '../../../utils/functions';
  * @returns {React.Element} A Squad teammate info element
  */
 const SquadPlayer = ({ data, empty, disabled }) => {
+  const playingPosition = getPlayingPositionById(
+    parseInt(data?.playingPosition)
+  );
+
   return empty ? (
     <Link href={disabled ? '/create_squad' : '/create_teammate'}>
       <div
@@ -45,12 +55,12 @@ const SquadPlayer = ({ data, empty, disabled }) => {
         <span className={styles.squadNumber}>{data?.squadNumber}</span>
         <span
           className={
-            data.playingPosition === 'Goalkeeper'
+            playingPosition === 'GK'
               ? styles.playingPositionGk
               : styles.playingPosition
           }
         >
-          {abbreviatePosition(data?.playingPosition)}
+          {playingPosition}
         </span>
       </div>
       <small>{data?.lastName}</small>
