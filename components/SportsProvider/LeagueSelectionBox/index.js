@@ -44,7 +44,7 @@ function LeagueSelectionBox({
           className={`${styles.removeButton} ${styles.joinButtonDisabled}`}
           onClick={handleDeselect}
         >
-          Remove
+          Unselect
         </button>
       ) : null}
       <button
