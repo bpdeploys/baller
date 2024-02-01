@@ -23,6 +23,7 @@ const Button = ({
   disabled = false,
   customClassName,
   uppercase,
+  loading,
   ...props
 }) => {
   const buttonClasses = [
@@ -49,7 +50,11 @@ const Button = ({
         className={buttonClasses}
         {...props}
       >
-        {text}
+        {loading ? (
+          <img src="/assets/imgs/svgs/LoadingIcon.svg" width={20} height={20} />
+        ) : (
+          text
+        )}
       </button>
     );
   }

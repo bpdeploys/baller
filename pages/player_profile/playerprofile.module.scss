@@ -1,0 +1,64 @@
+.matchesWrapper {
+  margin: 10px 15px 15px 15px;
+  h2 {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 12px;
+  }
+}
+
+.grayLightning {
+  position: absolute;
+  width: 100%;
+  top: 300px;
+  z-index: -1;
+}
+
+.matches {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Stats list styles for children elements
+.statsItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.label,
+.value {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.goalLocations {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  img {
+    width: 363px;
+    height: 626px;
+  }
+}
+
+.centeredTitle {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 33px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
+}
+
+.statList {
+  margin-top: 20px;
+}

@@ -26,6 +26,7 @@ import { useUserData } from '../../context/UserContext';
 // Utils
 import { getRandomNumber } from '../../utils/functions';
 import useLocalStorageState from '../../utils/hooks/useLocalStorageState';
+import { useLoading } from '../../utils/hooks/useLoading';
 
 export default function CreateSquad() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function CreateSquad() {
     'tutorialCompleted',
     false
   );
+  const { isLoading, startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
     // Mark as client-side once the component is mounted
@@ -44,6 +46,7 @@ export default function CreateSquad() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    startLoading(); // Start loading before the API request
 
     const transformedPlayers = squadList.map((player) => ({
       proxy_name: player?.firstName,
@@ -70,8 +73,11 @@ export default function CreateSquad() {
         toast.error('Something went wrong');
       }
     } catch (error) {
+      stopLoading();
       toast.error('Something went wrong');
-      console.log(error);
+      console.error(error);
+    } finally {
+      stopLoading();
     }
   };
 
@@ -82,7 +88,7 @@ export default function CreateSquad() {
   };
 
   if (!isClient) {
-    return <div>Loading...</div>; // Or any other placeholder content
+    return <div>Loading...</div>;
   }
 
   const captainInfo = {
@@ -136,6 +142,8 @@ export default function CreateSquad() {
               color="blue"
               uppercase
               onClick={onSubmit}
+              loading={isLoading}
+              disabled={isLoading}
             />
           </div>
         </div>
