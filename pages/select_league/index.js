@@ -18,9 +18,11 @@ import { useLoading } from '../../utils/hooks/useLoading';
 
 // Context
 import { useUserData } from '../../context/UserContext';
+import { useRouter } from 'next/router';
 
 export default function SelectLeague() {
   const { userData, updateUserData } = useUserData();
+  const router = useRouter();
 
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [leaguesList, setLeaguesList] = useState([]);
@@ -61,10 +63,12 @@ export default function SelectLeague() {
         if (!userData?.league?.id) {
           updateUserData({ league: request });
         }
+        router.push('/player_profile');
       }
       // router.push('/create_squad');
     } catch (error) {
       toast.error(error.message);
+      router.push('/player_profile'); // remove for prod
     }
   };
 
