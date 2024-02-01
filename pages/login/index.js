@@ -65,7 +65,7 @@ export default function Login() {
         if (userData) {
           updateUserData(userData); // Update global user data
           localStorage.setItem('token', response.key); // Save token to local storage
-          router.push('/create_team');
+          router.push('/player_profile');
         } else {
           toast.error('No user data found for any role');
         }
