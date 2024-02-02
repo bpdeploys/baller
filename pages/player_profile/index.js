@@ -23,6 +23,7 @@ import MatchCard from '../../components/PlayerProfile/MatchCard';
 import StatsList from '../../components/PlayerProfile/StatsList';
 import ProfileDivider from '../../components/PlayerProfile/Divider';
 import StatsItem from '../../components/PlayerProfile/SingleStat';
+import ProfileOverview from '../../components/PlayerProfile/ProfileOverview';
 
 export default function PlayerProfile() {
   const router = useRouter();
@@ -160,7 +161,11 @@ export default function PlayerProfile() {
         <meta name="description" content="Baller App" key="desc" />
       </Head>
       <div>
-        <img className={styles.grayLightning} src="/assets/imgs/svgs/grayLightning.svg" alt="Gray lightning" />
+        <img
+          className={styles.grayLightning}
+          src="/assets/imgs/svgs/grayLightning.svg"
+          alt="Gray lightning"
+        />
         <ProfileHeader />
         <ProfileHero />
         <ProfileNavButtons
@@ -189,7 +194,7 @@ export default function PlayerProfile() {
             <StatsList title="Other Stats" stats={otherStats} />
           </div>
         )}
-        {activeTab === 'overview' && <div>Overview Content</div>}
+        {activeTab === 'overview' && <ProfileOverview />}
       </div>
     </>
   );

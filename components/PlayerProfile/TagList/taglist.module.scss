@@ -1,4 +1,4 @@
-.statsList {
+.tagList {
   background-color: transparent; // Adjust color as needed
   padding: 10px 20px;
   position: relative;
@@ -25,15 +25,46 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+
+  div {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 20px;
+    }
+  }
 }
 
-.label,
-.value {
+.label {
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.done,
+.pending {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  width: 70px;
+  height: 22px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.done {
+  background-color: rgba(19, 97, 169, 1);
+}
+
+.pending {
+  background-color: rgba(221, 6, 6, 1);
 }
 
 .viewMoreButton {
