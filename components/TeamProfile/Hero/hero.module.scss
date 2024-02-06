@@ -1,0 +1,83 @@
+.hero {
+  width: 100vw;
+  height: 215px;
+  background-color: #1361a9;
+  overflow: hidden;
+
+  .heroWrapper {
+    display: flex;
+    position: relative;
+
+    .topLightning,
+    .bottomLightning {
+      position: absolute;
+      width: 100vw;
+    }
+
+    .topLightning {
+      top: -60px;
+    }
+
+    .bottomLightning {
+      bottom: -140px;
+    }
+
+    .heroLeft,
+    .heroMid {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .heroLeft {
+      z-index: 10;
+      position: relative;
+      margin: 10px 0 0 10px;
+      .profileImage {
+        margin-bottom: 25px;
+      }
+    }
+
+    .heroMid {
+      z-index: 10;
+      width: 109px;
+      margin: 10px 0 0 15px;
+
+      h1,
+      h4 {
+        color: #fff;
+      }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 400;
+        line-height: 46px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 8px;
+      }
+
+      h4 {
+        font-size: 15px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 5px;
+      }
+    }
+
+    .heroNumber {
+      position: absolute;
+      bottom: -30px;
+      right: 11px;
+      color: #fff;
+      text-shadow: 2px 2px 4px #00000075;
+      font-size: 100px;
+      font-weight: 400;
+      line-height: 132px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+  }
+}

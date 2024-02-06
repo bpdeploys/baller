@@ -1,0 +1,77 @@
+.squadList {
+  background-color: transparent; // Adjust color as needed
+  padding: 10px 20px;
+  position: relative;
+  width: 100%;
+
+  button {
+    width: 90%;
+    margin: 10% 5%;
+  }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  h3 {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+}
+
+.playerItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 15px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.done,
+.pending {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  width: fit-content;
+  height: 22px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 0 6px;
+}
+
+.done {
+  color: black;
+}
+
+.pending {
+  background-color: rgba(221, 6, 6, 1);
+}

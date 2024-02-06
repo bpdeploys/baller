@@ -1,0 +1,70 @@
+.fixtureBox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid rgba(223, 223, 223, 1);
+  background: transparent;
+  min-width: 364px;
+  min-height: 160px;
+  margin-bottom: 40px;
+  padding: 12px 20px;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__content {
+    width: 100%;
+
+    h3 {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 39px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+
+    small {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+
+    span {
+      position: absolute;
+      bottom: 50px;
+      right: 30px;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    position: relative;
+
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      margin-left: 10%;
+      height: 1px;
+      border-bottom: 1px solid rgba(18, 91, 159, 1);
+      bottom: 30px;
+      left: -10%;
+      font-size: 15px;
+    }
+  }
+}

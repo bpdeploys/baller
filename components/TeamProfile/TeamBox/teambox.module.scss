@@ -1,0 +1,65 @@
+.teamBox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid rgba(223, 223, 223, 1);
+  background: transparent;
+  min-width: 364px;
+  min-height: 160px;
+  margin-bottom: 40px;
+  padding: 12px 20px;
+
+  &__content {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__detail {
+    display: flex;
+    align-items: center;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    position: relative;
+
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      margin-left: 10%;
+      height: 1px;
+      border-bottom: 1px solid rgba(18, 91, 159, 1);
+      bottom: 30px;
+      left: -10%;
+      font-size: 15px;
+    }
+  }
+}
