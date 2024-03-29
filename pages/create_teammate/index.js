@@ -79,6 +79,17 @@ export default function CreateTeammate() {
     loadData();
   }, []);
 
+  // Prefill form fields with stored data from localStorage on component mount
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('failed_teammate_creation');
+    if (storedFormData) {
+      const formData = JSON.parse(storedFormData);
+      Object.keys(formData).forEach((key) => {
+        setValue(key, formData[key]);
+      });
+    }
+  }, []);
+
   const onSubmit = async (data) => {
     // Check for duplicate squad number
     const isDuplicateSquadNumber = squadList.some(
@@ -99,7 +110,10 @@ export default function CreateTeammate() {
       toast.success('Teammate created successfully!');
       router.push('/create_squad');
     } catch (error) {
-      toast.error('Failed to create teammate.');
+      localStorage.setItem('failed_teammate_creation', JSON.stringify(data));
+      toast.error(
+        'Failed to create teammate. Please try again later or when you have a stable internet connection.'
+      );
     }
   };
 

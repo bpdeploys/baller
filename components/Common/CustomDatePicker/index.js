@@ -32,7 +32,6 @@ const CustomDatePicker = React.forwardRef(
   ) => {
     const CustomDatePickerInput = React.forwardRef(
       ({ value, onClick }, inputRef) => {
-        // Determine display value - use placeholder if value is not set
         const displayValue = value ? value : placeholder;
 
         return (
@@ -54,7 +53,7 @@ const CustomDatePicker = React.forwardRef(
 
     return (
       <DatePicker
-        selected={value || null} // Set to null when no value to ensure placeholder is displayed
+        selected={value || null}
         onChange={onChange}
         customInput={
           <CustomDatePickerInput

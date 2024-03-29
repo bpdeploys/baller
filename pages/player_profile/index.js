@@ -49,18 +49,21 @@ export default function PlayerProfile() {
       date: '17/10/23',
       type: 'League',
       competition: 'Up',
+      attending: true,
     },
     {
       opponent: 'Chelsea',
       date: '24/10/23',
       type: 'League',
       competition: 'Down',
+      attending: false,
     },
     {
       opponent: 'Liverpool',
       date: '31/10/23',
       type: 'League',
       competition: 'Mid',
+      attending: null,
     },
   ];
 

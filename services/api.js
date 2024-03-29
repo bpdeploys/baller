@@ -213,14 +213,23 @@ export const createProxyPlayerSquad = async (proxyPlayersData) => {
       Authorization: `Token ${token}`,
     };
 
+    const config = {
+      headers,
+      timeout: 25000,
+    };
+
     const response = await api.post(
       '/players/proxy/bulk-create/',
       proxyPlayersData,
-      { headers }
+      config
     );
     return response.data;
   } catch (error) {
     console.error(error);
-    throw new Error('An error occurred while creating your squad');
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      throw new Error('The request timed out');
+    } else {
+      throw new Error('An error occurred while creating your squad');
+    }
   }
 };

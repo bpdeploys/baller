@@ -30,7 +30,7 @@ import { useLoading } from '../../utils/hooks/useLoading';
 
 export default function CreateSquad() {
   const router = useRouter();
-  const { squadList } = useContext(SquadContext);
+  const { squadList, setSquad } = useContext(SquadContext);
   const { userData } = useUserData();
   const [isClient, setIsClient] = useState(false);
   const [tutorialCompleted, setTutorialCompleted] = useLocalStorageState(
@@ -40,24 +40,39 @@ export default function CreateSquad() {
   const { isLoading, startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
-    // Mark as client-side once the component is mounted
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    if (squadList.length === 0) {
+      const storedBackup = localStorage.getItem('squadListBackup');
+      if (storedBackup) {
+        const backupSquad = JSON.parse(storedBackup);
+        setSquad(backupSquad);
+        localStorage.removeItem('squadListBackup');
+      }
+    }
+  }, [squadList, setSquad]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    startLoading(); // Start loading before the API request
+    startLoading();
 
-    const transformedPlayers = squadList.map((player) => ({
-      proxy_name: player?.firstName,
-      proxy_surname: player?.lastName,
-      phone_number: player?.phoneNumber,
-      playing_position: 1,
-      squad_number: player?.squadNumber,
-      email:
-        player?.firstName + player?.lastName + getRandomNumber() + '@bp.com',
-      team_id: userData?.team?.id,
-    }));
+    const uniquePlayers = new Set(squadList.map((player) => player.id));
+    const transformedPlayers = [...uniquePlayers].map((id) => {
+      const player = squadList.find((p) => p.id === id);
+      return {
+        proxy_name: player?.firstName,
+        proxy_surname: player?.lastName,
+        phone_number: player?.phoneNumber,
+        playing_position: 1,
+        squad_number: player?.squadNumber,
+        email: `${player?.firstName}${
+          player?.lastName
+        }${getRandomNumber()}@bp.com`,
+        team_id: userData?.team?.id,
+      };
+    });
 
     const payload = {
       team_id: userData?.team?.id,
@@ -74,8 +89,14 @@ export default function CreateSquad() {
       }
     } catch (error) {
       stopLoading();
-      toast.error('Something went wrong');
-      console.error(error);
+      if (error.message === 'The request timed out') {
+        localStorage.setItem('squadListBackup', JSON.stringify(squadList));
+        toast.error(
+          'Request timed out. Your squad data has been saved locally. Please try again later.'
+        );
+      } else {
+        toast.error('Something went wrong');
+      }
     } finally {
       stopLoading();
     }

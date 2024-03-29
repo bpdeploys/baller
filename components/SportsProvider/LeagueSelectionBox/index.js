@@ -13,7 +13,7 @@ function LeagueSelectionBox({
   }`;
 
   const handleDeselect = (event) => {
-    event.stopPropagation(); // Prevent onClick of parent div
+    event.stopPropagation();
     deselect();
   };
 

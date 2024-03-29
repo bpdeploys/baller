@@ -22,8 +22,12 @@ export const SquadProvider = ({ children }) => {
     setSquadList([...squadList, teammate]);
   };
 
+  const setSquad = (newSquad) => {
+    setSquadList(newSquad);
+  };
+
   return (
-    <SquadContext.Provider value={{ squadList, addTeammate }}>
+    <SquadContext.Provider value={{ squadList, addTeammate, setSquad }}>
       {children}
     </SquadContext.Provider>
   );

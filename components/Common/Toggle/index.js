@@ -11,7 +11,6 @@ const Toggle = ({
   showText = true,
 }) => {
   const handleSpanClick = () => {
-    // Create a mock event object with the new 'checked' value
     const event = { target: { checked: !checked } };
     onChange(event);
   };
