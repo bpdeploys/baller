@@ -19,12 +19,15 @@ import { useCreateTeamFormData } from '../../context/TeamContext';
 
 // API
 import { createTeam } from '../../services/api';
+import { useLoading } from '../../utils/hooks/useLoading';
 
 export default function CreateTeam() {
   const router = useRouter();
   const { data, setCreateTeamFormValues } = useCreateTeamFormData();
   const { userData, updateUserData } = useUserData();
   const [teamName, setTeamName] = useState(data.teamName || '');
+
+  const { isLoading, startLoading, stopLoading } = useLoading();
 
   const getButtonClass = (condition) =>
     condition ? styles.buttonTrue : styles.buttonFalse;
@@ -63,6 +66,8 @@ export default function CreateTeam() {
       number: data?.kitSquadNumber,
     };
 
+    startLoading();
+
     try {
       const request = await createTeam(teamInformation);
       if (request) {
@@ -74,6 +79,8 @@ export default function CreateTeam() {
       router.push('/create_squad');
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      stopLoading();
     }
   };
 
@@ -128,6 +135,8 @@ export default function CreateTeam() {
               color="blue"
               uppercase
               onClick={handleSubmit}
+              loading={isLoading}
+              disabled={isLoading}
             />
           </div>
         </form>

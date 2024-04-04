@@ -46,7 +46,7 @@ const Button = ({
       <button
         type={type}
         onClick={onClick}
-        disabled={disabled}
+        disabled={loading || disabled}
         className={buttonClasses}
         {...props}
       >

@@ -49,7 +49,16 @@ export default function CreatePlayerProfile() {
   const { register, handleSubmit } = useForm({
     resolver,
   });
-  const { isLoading, startLoading, stopLoading } = useLoading();
+  const {
+    isLoading: isLoadingData,
+    startLoading: startLoadingData,
+    stopLoading: stopLoadingData,
+  } = useLoading();
+  const {
+    isLoading: isLoadingSubmit,
+    startLoading: startLoadingSubmit,
+    stopLoading: stopLoadingSubmit,
+  } = useLoading();
 
   const [nations, setNations] = useState([]);
   const [positions, setPositions] = useState([]);
@@ -64,7 +73,7 @@ export default function CreatePlayerProfile() {
   // Get data to populate necessary dropdowns
   useEffect(() => {
     const loadData = async () => {
-      startLoading();
+      startLoadingData();
 
       const selectedSport = data.sport;
 
@@ -86,15 +95,17 @@ export default function CreatePlayerProfile() {
       } catch (error) {
         toast.error(error.message);
       } finally {
-        stopLoading();
+        stopLoadingData();
       }
     };
 
     loadData();
   }, []);
 
+  console.log(positions);
+
   const onSubmit = async (values) => {
-    setFormValues(values);
+    // setFormValues(values);
 
     const playerProfile = {
       first_name: data?.firstName,
@@ -104,15 +115,19 @@ export default function CreatePlayerProfile() {
       type: data?.type,
       gender: data?.gender,
       nationality: data?.nationality || values.nationality,
-      playing_position:
-        parseInt(data?.playingPosition) || parseInt(values.playingPosition),
       second_nationality: data?.secondNationality,
       motive: data?.motive || values.motive,
       dob: datePickerValue.toISOString().split('T')[0],
       // postcode: data?.postcode || values.postcode,
       sport: data?.sport,
+      player_data: {
+        playing_position: data?.playingPosition || values.playingPosition,
+        sport: data?.sport,
+      },
     };
 
+    console.log('PROFILE', playerProfile);
+    startLoadingSubmit();
     try {
       const response = await createPlayerProfile(playerProfile);
       if (response.token) {
@@ -142,6 +157,8 @@ export default function CreatePlayerProfile() {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      stopLoadingSubmit();
     }
   };
 
@@ -156,7 +173,7 @@ export default function CreatePlayerProfile() {
     { href: '/create_player_profile', text: 'Create Account' },
   ];
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoadingData) return <div>Loading...</div>;
 
   return (
     <>
@@ -218,6 +235,8 @@ export default function CreatePlayerProfile() {
               color="blue"
               uppercase
               type="submit"
+              loading={isLoadingSubmit}
+              disabled={isLoadingSubmit}
             />
           </div>
         </form>

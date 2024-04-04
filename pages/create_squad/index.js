@@ -54,6 +54,8 @@ export default function CreateSquad() {
     }
   }, [squadList, setSquad]);
 
+  console.log(squadList);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     startLoading();
@@ -164,7 +166,12 @@ export default function CreateSquad() {
               uppercase
               onClick={onSubmit}
               loading={isLoading}
-              disabled={isLoading}
+              disabled={
+                !tutorialCompleted ||
+                squadList.length < 3 ||
+                squadList.length > 11 ||
+                isLoading
+              }
             />
           </div>
         </div>

@@ -27,20 +27,30 @@ export default function SelectLeague() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [leaguesList, setLeaguesList] = useState([]);
 
-  const { isLoading, startLoading, stopLoading } = useLoading();
+  const {
+    isLoading: isLoadingProviders,
+    startLoading: startLoadingProviders,
+    stopLoading: stopLoadingProviders,
+  } = useLoading();
+
+  const {
+    isLoading: isLoadingSubmit,
+    startLoading: startLoadingSubmit,
+    stopLoading: stopLoadingSubmit,
+  } = useLoading();
 
   const isAnyLeagueSelected = selectedLeague !== null;
 
   useEffect(() => {
     const fetchSportsProviders = async () => {
       try {
-        startLoading(); // Start loading
+        startLoadingProviders(); // Start loading
         const leagues = await getAllLeaguesByVenue(userData?.team?.venue);
         setLeaguesList(leagues);
-        stopLoading(); // Stop loading after data is fetched
       } catch (error) {
         console.error('Error fetching sports providers:', error);
-        stopLoading(); // Stop loading in case of error
+      } finally {
+        stopLoadingProviders();
       }
     };
 
@@ -53,6 +63,8 @@ export default function SelectLeague() {
     const leagueInfo = {
       league: selectedLeague?.id,
     };
+
+    startLoadingSubmit();
 
     try {
       const request = await updateLeague(userData?.team?.id, leagueInfo);
@@ -69,6 +81,8 @@ export default function SelectLeague() {
     } catch (error) {
       toast.error(error.message);
       router.push('/player_profile'); // remove for prod
+    } finally {
+      stopLoadingSubmit();
     }
   };
 
@@ -76,7 +90,7 @@ export default function SelectLeague() {
     setSelectedLeague(item);
   };
 
-  if (isLoading) {
+  if (isLoadingProviders) {
     return <div>Loading...</div>;
   }
 
@@ -105,7 +119,8 @@ export default function SelectLeague() {
               text="Confirm entry"
               color={selectedLeague ? 'blue' : 'gray'}
               onClick={handleSubmit}
-              disabled={!selectedLeague}
+              disabled={!selectedLeague || isLoadingSubmit}
+              loading={isLoadingSubmit}
             />
           </div>
         </div>
