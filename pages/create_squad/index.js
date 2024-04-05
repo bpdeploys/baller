@@ -54,27 +54,30 @@ export default function CreateSquad() {
     }
   }, [squadList, setSquad]);
 
-  console.log(squadList);
-
   const onSubmit = async (e) => {
     e.preventDefault();
     startLoading();
 
-    const uniquePlayers = new Set(squadList.map((player) => player.id));
-    const transformedPlayers = [...uniquePlayers].map((id) => {
-      const player = squadList.find((p) => p.id === id);
-      return {
-        proxy_name: player?.firstName,
-        proxy_surname: player?.lastName,
-        phone_number: player?.phoneNumber,
-        playing_position: 1,
-        squad_number: player?.squadNumber,
-        email: `${player?.firstName}${
-          player?.lastName
-        }${getRandomNumber()}@bp.com`,
-        team_id: userData?.team?.id,
-      };
-    });
+    // Use Set to track unique squadNumbers
+    const uniqueSquadNumbers = new Set();
+    const transformedPlayers = squadList.reduce((acc, player) => {
+      // Check if squadNumber is already processed
+      if (!uniqueSquadNumbers.has(player.squadNumber)) {
+        uniqueSquadNumbers.add(player.squadNumber);
+        acc.push({
+          proxy_name: player.firstName,
+          proxy_surname: player.lastName,
+          phone_number: player.phoneNumber,
+          squad_number: player.squadNumber,
+          email: `${player.firstName}${
+            player.lastName
+          }${getRandomNumber()}@bp.com`,
+          team_id: userData?.team?.id,
+          playing_position: player.playingPosition,
+        });
+      }
+      return acc;
+    }, []);
 
     const payload = {
       team_id: userData?.team?.id,
