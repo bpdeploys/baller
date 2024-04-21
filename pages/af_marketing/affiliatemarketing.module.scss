@@ -1,0 +1,74 @@
+.affiliates {
+  h1 {
+    margin: 5% 0 1% 2%;
+    font-weight: bolder;
+    color: #272e64;
+  }
+
+  .categoriesContainer {
+    display: flex;
+    overflow-x: auto;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 1rem 0;
+    padding-left: 2%;
+  }
+
+  .categoriesContent {
+    display: flex;
+  }
+
+  .tag {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 30px;
+    white-space: nowrap;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.04);
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.04));
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    color: #272e64;
+    font-weight: bold;
+    font-size: 14px;
+
+    &:hover {
+      background-color: darken(#fff, 5%);
+    }
+
+    &.active {
+      background-color: #272e64;
+      color: #fff;
+    }
+  }
+
+  .indicatorRight {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 8px solid #ccc;
+    }
+
+    .line {
+      width: 20px;
+      height: 4px;
+      background-color: #ccc;
+      margin-left: 8px;
+    }
+  }
+}
+
+.cards {
+  padding-bottom: 2rem;
+}
