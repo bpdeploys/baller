@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
+// Components
+import AffiliateCard from '../../components/Affiliates/AffiliateCard';
+import OfferDetails from '../../components/Affiliates/OfferDetails';
+
+// Utils
+import { mockOffers } from '../../utils/data/mockOffers';
+
 // Styles
 import styles from './affiliatemarketing.module.scss';
-import AffiliateCard from '../../components/Affiliates/AffiliateCard';
-import { mockOffers } from '../../utils/data/mockOffers';
 
 export default function SelectSport() {
   const [categories, setCategories] = useState([
@@ -94,6 +99,10 @@ export default function SelectSport() {
           />
         ))}
       </div>
+      <OfferDetails
+        offer={selectedOffer}
+        onClose={() => setSelectedOffer(null)}
+      />
     </div>
   );
 }
