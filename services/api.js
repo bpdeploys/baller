@@ -233,3 +233,13 @@ export const createProxyPlayerSquad = async (proxyPlayersData) => {
     }
   }
 };
+
+export const redeemProxyPlayer = async (playerProfile) => {
+  try {
+    const response = await api.post('/register/', playerProfile);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while redeeming your player profile');
+  }
+};

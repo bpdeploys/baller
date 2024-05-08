@@ -1,0 +1,19 @@
+.homewall {
+  min-width: 100vw;
+  background-color: rgba(18, 91, 159, 1);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+
+    div {
+      width: 30px;
+    }
+  }
+
+  .cards {
+    margin: 0 12px;
+  }
+}

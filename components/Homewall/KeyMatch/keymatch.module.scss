@@ -1,0 +1,59 @@
+.keyMatch {
+  margin-bottom: 1.5rem;
+
+  h4 {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card {
+    width: 100%;
+    min-height: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    padding: 12px 20px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+
+    .date {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 15px;
+    }
+
+    .content {
+      padding: 40px 1.5rem 0 1.5rem;
+    }
+
+    .teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        font-size: 16px;
+      }
+    }
+
+    button {
+      border: none;
+      width: 100%;
+      margin-top: 1rem;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .active {
+      background-color: rgba(183, 187, 17, 1);
+    }
+
+    .normal {
+      background-color: rgba(182, 10, 10, 1);
+    }
+  }
+}

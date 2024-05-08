@@ -1,0 +1,55 @@
+.liveMatch {
+  padding-bottom: 1.5rem;
+
+  h4 {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card {
+    width: 100%;
+    min-height: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    padding: 12px 20px;
+    overflow: hidden;
+
+    .liveTag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 13px;
+      color: #fff;
+      background: rgba(182, 10, 10, 1);
+      padding: 3px 7px;
+      border-radius: 5px;
+    }
+
+    .content {
+      padding: 0 1.5rem;
+    }
+
+    .teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+          font-size: 50px;
+        }
+
+        small {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

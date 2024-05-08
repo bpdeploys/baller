@@ -1,0 +1,121 @@
+.fixtureBox {
+  h4 {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+    border-radius: 5px;
+    background: #fff;
+    min-width: 364px;
+    padding: 12px 20px;
+    overflow: hidden;
+    margin-bottom: 1.5rem; 
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &__content {
+      width: 100%;
+      z-index: 2;
+
+      h3 {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 39px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+
+      small {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+
+      span {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 15px;
+      }
+    }
+
+    &__link {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-top: 1rem;
+
+      img {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        margin-left: 10%;
+        height: 1px;
+        border-bottom: 1px solid rgba(18, 91, 159, 1);
+        bottom: 30px;
+        left: -10%;
+        font-size: 15px;
+      }
+    }
+
+    &__confirm {
+      z-index: 2;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1.5rem;
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          width: 48%;
+          height: 35px;
+          font-size: 14px;
+          color: #fff;
+          border: none;
+          border-radius: 2px;
+          transition: all 0.3s ease;
+        }
+
+        .accept {
+          background: rgba(54, 163, 16, 1);
+
+          &:hover {
+            background: rgba(54, 163, 16, 0.8);
+          }
+        }
+
+        .decline {
+          background: rgba(182, 10, 10, 1);
+
+          &:hover {
+            background: rgba(182, 10, 10, 0.8);
+          }
+        }
+      }
+    }
+  }
+}
