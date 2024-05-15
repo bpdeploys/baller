@@ -11,14 +11,12 @@ import { useUserData } from '../../../context/UserContext';
 import { useHasMounted } from '../../../utils/hooks/useHasMounted';
 
 const links = [
-  { title: 'User Profile', path: '/user-profile' },
-  { title: 'Player Profile', path: '/player-profile' },
-  { title: 'Team Profile', path: '/team-profile' },
-  { title: 'Fantasy', path: '/fantasy' },
+  { title: 'Rewards', path: '/af_marketing' },
+  { title: 'Player Profile', path: '/player_profile' },
+  { title: 'Team Profile', path: '/team_profile' },
   { title: 'Homewall', path: '/homewall' },
-  { title: 'League Page', path: '/league-page' },
-  { title: 'Achievements', path: '/achievements' },
-  { title: 'Settings', path: '/settings' },
+  { title: 'League Page', path: '' },
+  { title: 'Settings', path: '' },
 ];
 
 const SideMenu = ({ isOpen, onClose }) => {
@@ -62,7 +60,7 @@ const SideMenu = ({ isOpen, onClose }) => {
             <span>{userData?.bp_points}</span>
             <small>bpc</small>
           </div>
-          <Link href={'/'}>Go to Wallet</Link>
+          {/* <Link href={'/'}>Go to Wallet</Link> */}
         </div>
         <div className={styles.sideMenu__links}>
           <nav>

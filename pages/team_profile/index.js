@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import { useUserData } from '../../context/UserContext';
 import { useLoading } from '../../utils/hooks/useLoading';
 import { useHasMounted } from '../../utils/hooks/useHasMounted';
-import ProfileHeader from '../../components/PlayerProfile/Header';
+import ProfileHeader from '../../components/Layout/ProfileHeader';
 import StatsItem from '../../components/PlayerProfile/SingleStat';
 import TeamHero from '../../components/TeamProfile/Hero';
 import FixtureBox from '../../components/TeamProfile/FixtureBox';
@@ -88,23 +88,22 @@ export default function PlayerProfile() {
     { stat: 'Goalless games', value: 54 },
     { stat: 'Wins after going behind', value: 54 },
     { stat: 'Draws after going behind', value: 54 },
-    { stat: 'Loss after going ahead', value: 54 }
+    { stat: 'Loss after going ahead', value: 54 },
   ];
-  
+
   const teamsPlayed = [
     { team: 'Arsenal', timesPlayed: 7 },
     { team: 'Tottenham', timesPlayed: 5 },
     { team: 'Liverpool', timesPlayed: 6 },
-    { team: 'Man City', timesPlayed: 4 }
+    { team: 'Man City', timesPlayed: 4 },
   ];
-  
+
   const topScorers = [
     { player: 'Mane', goals: 7 },
     { player: 'Gabriel', goals: 5 },
     { player: 'Haaland', goals: 6 },
-    { player: 'Kane', goals: 4 }
+    { player: 'Kane', goals: 4 },
   ];
-  
 
   return (
     <>
@@ -131,7 +130,11 @@ export default function PlayerProfile() {
           players={players}
           style={{ marginTop: '40px' }}
         />
-        <StatsList matchStatistics={matchStatistics} teamsPlayed={teamsPlayed} topScorers={topScorers}/>
+        <StatsList
+          matchStatistics={matchStatistics}
+          teamsPlayed={teamsPlayed}
+          topScorers={topScorers}
+        />
       </div>
     </>
   );

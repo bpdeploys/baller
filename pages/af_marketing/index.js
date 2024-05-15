@@ -9,6 +9,7 @@ import { mockOffers } from '../../utils/data/mockOffers';
 
 // Styles
 import styles from './affiliatemarketing.module.scss';
+import ProfileHeader from '../../components/Layout/ProfileHeader';
 
 export default function SelectSport() {
   const [categories, setCategories] = useState([
@@ -72,37 +73,40 @@ export default function SelectSport() {
   };
 
   return (
-    <div className={styles.affiliates}>
-      <h1>Exclusive offers</h1>
-      <div className={styles.categoriesContainer} ref={containerRef}>
-        <div className={styles.categoriesContent} ref={contentRef}>
-          {categories.map((category) => (
-            <div
-              key={category}
-              className={`${styles.tag} ${
-                selectedCategory === category ? styles.active : ''
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </div>
+    <>
+      <ProfileHeader />
+      <div className={styles.affiliates}>
+        <h1>Exclusive offers</h1>
+        <div className={styles.categoriesContainer} ref={containerRef}>
+          <div className={styles.categoriesContent} ref={contentRef}>
+            {categories.map((category) => (
+              <div
+                key={category}
+                className={`${styles.tag} ${
+                  selectedCategory === category ? styles.active : ''
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </div>
+            ))}
+          </div>
+          {showIndicator && <></>}
+        </div>
+        <div className={styles.cards}>
+          {filteredOffers.map((offer) => (
+            <AffiliateCard
+              key={offer.id}
+              onClick={() => setSelectedOffer(offer)}
+              {...offer}
+            />
           ))}
         </div>
-        {showIndicator && <></>}
+        <OfferDetails
+          offer={selectedOffer}
+          onClose={() => setSelectedOffer(null)}
+        />
       </div>
-      <div className={styles.cards}>
-        {filteredOffers.map((offer) => (
-          <AffiliateCard
-            key={offer.id}
-            onClick={() => setSelectedOffer(offer)}
-            {...offer}
-          />
-        ))}
-      </div>
-      <OfferDetails
-        offer={selectedOffer}
-        onClose={() => setSelectedOffer(null)}
-      />
-    </div>
+    </>
   );
 }

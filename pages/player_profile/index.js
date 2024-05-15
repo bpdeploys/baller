@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import { useUserData } from '../../context/UserContext';
 import { useLoading } from '../../utils/hooks/useLoading';
 import { useHasMounted } from '../../utils/hooks/useHasMounted';
-import ProfileHeader from '../../components/PlayerProfile/Header';
+import ProfileHeader from '../../components/Layout/ProfileHeader';
 import ProfileHero from '../../components/PlayerProfile/Hero';
 import ProfileNavButtons from '../../components/PlayerProfile/NavButtons';
 import StatsDisplay from '../../components/PlayerProfile/StatsDisplay';
@@ -24,6 +24,8 @@ import StatsList from '../../components/PlayerProfile/StatsList';
 import ProfileDivider from '../../components/PlayerProfile/Divider';
 import StatsItem from '../../components/PlayerProfile/SingleStat';
 import ProfileOverview from '../../components/PlayerProfile/ProfileOverview';
+import useToggle from '../../utils/hooks/useToggle';
+import SideMenu from '../../components/Layout/SideMenu';
 
 export default function PlayerProfile() {
   const router = useRouter();
