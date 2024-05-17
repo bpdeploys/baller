@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import html2canvas from 'html2canvas';
 import Head from 'next/head';
 import { toast } from 'react-toastify';
+import { Capacitor } from '@capacitor/core';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 // Components
 import Header from '../../components/Layout/Header';
@@ -49,29 +51,51 @@ export default function PlayerCodes() {
     router.push('/select_league');
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     if (!hasMounted) {
       return;
     }
     const element = document.querySelector(`.${styles.playerCodes}`);
 
-    html2canvas(element)
-      .then((canvas) => {
-        // Create an image from the canvas
-        const image = canvas.toDataURL('image/png');
+    if (Capacitor.isNativePlatform()) {
+      try {
+        const canvas = await html2canvas(element);
+        const image = canvas.toDataURL('image/png'); // Full data URL
 
-        // Create a link to download the image
-        const link = document.createElement('a');
-        link.href = image;
-        link.download = 'team-codes.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      })
-      .catch((error) => {
+        const base64Data = image.split(',')[1];
+        const fileName = `screenshot-${Date.now()}.png`;
+
+        const result = await Filesystem.writeFile({
+          path: fileName,
+          data: base64Data,
+          directory: Directory.Documents,
+          encoding: Encoding.Base64,
+        });
+
+        // Convert file path to web-friendly URL
+        const fixedPhotoUri = Capacitor.convertFileSrc(result.uri);
+        toast.success('Screenshot saved to gallery', fixedPhotoUri);
+      } catch (error) {
         console.log(error);
         toast.error('Error taking screenshot');
-      });
+      }
+    } else {
+      // Use html2canvas for browser
+      html2canvas(element)
+        .then((canvas) => {
+          const image = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.href = image;
+          link.download = 'team-codes.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error('Error taking screenshot');
+        });
+    }
   };
 
   const playersData = proxyCodes?.players?.map((player) => ({
