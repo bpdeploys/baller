@@ -27,6 +27,7 @@ import { useUserData } from '../../context/UserContext';
 import { getRandomNumber } from '../../utils/functions';
 import useLocalStorageState from '../../utils/hooks/useLocalStorageState';
 import { useLoading } from '../../utils/hooks/useLoading';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function CreateSquad() {
   const router = useRouter();
@@ -114,7 +115,7 @@ export default function CreateSquad() {
   };
 
   if (!isClient) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   const captainInfo = {

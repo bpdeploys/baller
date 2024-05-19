@@ -17,6 +17,7 @@ import { fetchAllLeagueProviders } from '../../services/api';
 // Context
 import { useCreateTeamFormData } from '../../context/TeamContext';
 import { useLoading } from '../../utils/hooks/useLoading';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function SelectSportsProvider() {
   const router = useRouter();
@@ -63,7 +64,7 @@ export default function SelectSportsProvider() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

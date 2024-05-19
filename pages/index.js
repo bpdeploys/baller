@@ -1,13 +1,39 @@
 import Head from 'next/head';
 
+import { Capacitor } from '@capacitor/core';
+import { Camera } from '@capacitor/camera';
+
 // Components
 import ScreenWrapper from '../components/Layout/ScreenWrapper';
 import Button from '../components/Common/Button';
 
 // Styles
 import styles from './index.module.scss';
+import { useEffect } from 'react';
+
+const requestPermissions = async () => {
+  try {
+    const cameraPermissions = await Camera.requestPermissions();
+    if (cameraPermissions.photos !== 'granted') {
+      console.error('Permission denied to access camera');
+    }
+  } catch (error) {
+    console.error('Failed to request permissions', error);
+  }
+};
 
 export default function Home() {
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      const permissionsRequested = localStorage.getItem('permissionsRequested');
+      if (!permissionsRequested) {
+        requestPermissions().then(() => {
+          localStorage.setItem('permissionsRequested', 'true');
+        });
+      }
+    }
+  }, []);
+
   return (
     <>
       <Head>

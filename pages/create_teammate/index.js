@@ -27,6 +27,7 @@ import styles from './createteammate.module.scss';
 import { useUserData } from '../../context/UserContext';
 import { useLoading } from '../../utils/hooks/useLoading';
 import { fetchAllPlayingPositions } from '../../services/api';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
@@ -149,7 +150,7 @@ export default function CreateTeammate() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

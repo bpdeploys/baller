@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getUserToken } from '../utils';
+import ScreenLoading from '../components/Common/LoadingScreen';
 
 function isTokenExpired(token) {
   try {
@@ -43,7 +44,7 @@ const withAuth = (WrappedComponent) => {
     }, [router]);
 
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <ScreenLoading />;
     }
 
     return <WrappedComponent {...props} />;

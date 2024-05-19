@@ -22,6 +22,7 @@ import { useHasMounted } from '../../utils/hooks/useHasMounted';
 
 // Styles
 import styles from './selectsquadnumber.module.scss';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function SelectSquadNumber() {
   const hasMounted = useHasMounted();
@@ -60,7 +61,7 @@ export default function SelectSquadNumber() {
   };
 
   if (!userData || !hasMounted) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

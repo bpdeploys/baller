@@ -33,6 +33,7 @@ import Header from '../../components/Layout/Header';
 import RedeemPlayerShirt from '../../components/RedeemPlayer/RedeemPlayerShirt';
 import FakeInput from '../../components/Common/FakeInput';
 import { useUserData } from '../../context/UserContext';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 const validationSchema = yup.object().shape({
   playingPosition: yup
@@ -110,7 +111,7 @@ export default function EditRedeemedProfile() {
   };
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

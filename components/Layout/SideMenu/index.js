@@ -9,6 +9,7 @@ import { useUserData } from '../../../context/UserContext';
 
 // Hooks
 import { useHasMounted } from '../../../utils/hooks/useHasMounted';
+import ScreenLoading from '../../Common/LoadingScreen';
 
 const links = [
   { title: 'Rewards', path: '/af_marketing' },
@@ -24,7 +25,7 @@ const SideMenu = ({ isOpen, onClose }) => {
   const hasMounted = useHasMounted();
 
   if (!hasMounted || !userData) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

@@ -19,6 +19,7 @@ import { useLoading } from '../../utils/hooks/useLoading';
 // Context
 import { useUserData } from '../../context/UserContext';
 import { useRouter } from 'next/router';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function SelectLeague() {
   const { userData, updateUserData } = useUserData();
@@ -91,7 +92,7 @@ export default function SelectLeague() {
   };
 
   if (isLoadingProviders) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

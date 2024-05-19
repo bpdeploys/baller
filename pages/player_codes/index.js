@@ -24,6 +24,7 @@ import { useHasMounted } from '../../utils/hooks/useHasMounted';
 // Styles
 import styles from './playercodes.module.scss';
 import { useRouter } from 'next/router';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function PlayerCodes() {
   const router = useRouter();
@@ -106,7 +107,7 @@ export default function PlayerCodes() {
   }));
 
   if (isLoading || !userData || !hasMounted) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (

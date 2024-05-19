@@ -33,6 +33,7 @@ import {
   fetchAllPlayingPositions,
 } from '../../services/api';
 import MobileDatePicker from '../../components/Common/MobileDatePicker';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 const validationSchema = yup.object().shape({
   playingPosition: yup.string().required('Playing Position is required'),
@@ -173,7 +174,7 @@ export default function CreatePlayerProfile() {
     { href: '/create_player_profile', text: 'Create Account' },
   ];
 
-  if (isLoadingData) return <div>Loading...</div>;
+  if (isLoadingData) return <ScreenLoading />;
 
   return (
     <>

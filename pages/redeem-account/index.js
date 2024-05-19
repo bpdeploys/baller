@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { useUserData } from '../../context/UserContext';
 import { useLoading } from '../../utils/hooks/useLoading';
 import { useHasMounted } from '../../utils/hooks/useHasMounted';
+import ScreenLoading from '../../components/Common/LoadingScreen';
 
 export default function RedeemAccount() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function RedeemAccount() {
   };
 
   if (isLoading || !userData || !hasMounted) {
-    return <div>Loading...</div>;
+    return <ScreenLoading />;
   }
 
   return (
