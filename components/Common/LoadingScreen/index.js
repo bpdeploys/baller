@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './loading.module.scss';
 
 const ScreenLoading = ({ height }) => {
@@ -18,14 +17,6 @@ const ScreenLoading = ({ height }) => {
       </div>
     </div>
   );
-};
-
-ScreenLoading.defaultProps = {
-  height: '100vh',
-};
-
-ScreenLoading.propTypes = {
-  height: PropTypes.string,
 };
 
 export default ScreenLoading;

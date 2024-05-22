@@ -1,20 +1,10 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-
-// Components
-import Header from '../../components/Layout/Header';
-import ScreenWrapper from '../../components/Layout/ScreenWrapper';
-import Button from '../../components/Common/Button';
+import { useState } from 'react';
 
 // Styles
 import styles from './playerprofile.module.scss';
-import RedeemPlayerShirt from '../../components/RedeemPlayer/RedeemPlayerShirt';
-import { useEffect, useState } from 'react';
-import { getProxyData } from '../../services/api';
-import { toast } from 'react-toastify';
-import { useUserData } from '../../context/UserContext';
-import { useLoading } from '../../utils/hooks/useLoading';
-import { useHasMounted } from '../../utils/hooks/useHasMounted';
+
+// Components
 import ProfileHeader from '../../components/Layout/ProfileHeader';
 import ProfileHero from '../../components/PlayerProfile/Hero';
 import ProfileNavButtons from '../../components/PlayerProfile/NavButtons';
@@ -24,15 +14,8 @@ import StatsList from '../../components/PlayerProfile/StatsList';
 import ProfileDivider from '../../components/PlayerProfile/Divider';
 import StatsItem from '../../components/PlayerProfile/SingleStat';
 import ProfileOverview from '../../components/PlayerProfile/ProfileOverview';
-import useToggle from '../../utils/hooks/useToggle';
-import SideMenu from '../../components/Layout/SideMenu';
 
 export default function PlayerProfile() {
-  const router = useRouter();
-  const { userData, updateUserData } = useUserData();
-  const { isLoading, startLoading, stopLoading } = useLoading();
-  const hasMounted = useHasMounted();
-
   const [activeTab, setActiveTab] = useState('stats');
 
   const handleTabChange = (tab) => {

@@ -4,19 +4,15 @@ export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [userData, setUserData] = useState(() => {
-    // Check if window is defined
     if (typeof window !== 'undefined') {
       const savedUserData = localStorage.getItem('userData');
       return savedUserData ? JSON.parse(savedUserData) : null;
     }
-    // Return null or initial state if on the server side
     return null;
   });
 
   useEffect(() => {
-    // Check if window is defined
     if (typeof window !== 'undefined') {
-      // Save user data to Local Storage whenever it changes
       localStorage.setItem('userData', JSON.stringify(userData));
     }
   }, [userData]);
@@ -29,7 +25,7 @@ export default function UserProvider({ children }) {
   };
 
   const clearUserData = () => {
-    setUserData(null); // Set userData to null or {}
+    setUserData(null);
     if (typeof window !== 'undefined') {
       localStorage.removeItem('userData');
       localStorage.removeItem('token');

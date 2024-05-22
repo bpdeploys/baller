@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 // Styles
 import styles from './homewall.module.scss';
 import WalletDetails from '../../components/Homewall/WalletDetails';
-import FeaturedOffer from '../../components/Homewall/FeaturedOffer';
 import FixtureBox from '../../components/Homewall/FixtureBox';
 import KeyMatch from '../../components/Homewall/KeyMatch';
 import LiveMatch from '../../components/Homewall/LiveMatch';
@@ -11,9 +10,13 @@ import AttendButton from '../../components/Homewall/AttendButton';
 import AffiliateCard from '../../components/Homewall/AffiliateCard';
 import useToggle from '../../utils/hooks/useToggle';
 import SideMenu from '../../components/Layout/SideMenu';
+import { useUserData } from '../../context/UserContext';
 
 export default function SelectSport() {
   const [isMenuOpen, toggleMenu] = useToggle();
+  const { userData } = useUserData();
+
+  console.log(userData);
 
   return (
     <>

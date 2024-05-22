@@ -51,7 +51,6 @@ export default function Login() {
       clearUserData();
       const response = await loginRequest(loginCredentials);
       if (response.key) {
-        // Check for each role and update user data if found
         const roles = ['venue_manager', 'player', 'coach', 'referee'];
         let userData = null;
 
@@ -63,9 +62,9 @@ export default function Login() {
         }
 
         if (userData) {
-          updateUserData(userData); // Update global user data
-          localStorage.setItem('token', response.key); // Save token to local storage
-          router.push('/player_profile');
+          updateUserData(userData);
+          localStorage.setItem('token', response.key);
+          router.push('/homewall');
         } else {
           toast.error('No user data found for any role');
         }

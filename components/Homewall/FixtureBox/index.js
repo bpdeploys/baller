@@ -15,34 +15,11 @@ const FixtureBox = ({ attending = false, link }) => {
     <div className={styles.fixtureBox}>
       <h4>Upcoming Fixture</h4>
       <div className={styles.card}>
-        <svg
-          viewBox="0 0 364 112"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 0C107.881 10.4312 172.494 11.1586 283.009 15.117L245.231 46.3244C288.015 56.1451 364 62.5032 364 62.5032V112C270.716 107.703 213.977 100.031 110.595 77.9346L158.199 56.1451C88.7257 45.6418 65.65 38.3624 0.000870987 30.5248L0 0Z"
-            fill="#F5F5F5"
-          />
-          <path
-            d="M0 0C107.881 10.4312 172.494 11.1586 283.009 15.117L245.231 46.3244C288.015 56.1451 364 62.5032 364 62.5032V112C270.716 107.703 213.977 100.031 110.595 77.9346L158.199 56.1451C88.7257 45.6418 65.65 38.3624 0.000870987 30.5248L0 0Z"
-            fill="url(#paint0_linear_405_65)"
-            fill-opacity="0.2"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_405_65"
-              x1="182"
-              y1="0"
-              x2="182"
-              y2="112"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0.609375" stop-color="white" />
-              <stop offset="1" stop-color="#D5D5D5" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <img
+          className={styles.lightning}
+          src="/assets/imgs/svgs/grayLightningThin.svg"
+          alt="Lightning image"
+        />
         <div className={styles.card__content}>
           <small>Chelsea vs</small>
           <br />

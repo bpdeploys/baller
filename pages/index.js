@@ -1,7 +1,11 @@
 import Head from 'next/head';
-
+import { useRouter } from 'next/router';
 import { Capacitor } from '@capacitor/core';
 import { Camera } from '@capacitor/camera';
+import { useEffect, useContext } from 'react';
+
+// Context
+import { UserContext } from '../context/UserContext';
 
 // Components
 import ScreenWrapper from '../components/Layout/ScreenWrapper';
@@ -9,7 +13,6 @@ import Button from '../components/Common/Button';
 
 // Styles
 import styles from './index.module.scss';
-import { useEffect } from 'react';
 
 const requestPermissions = async () => {
   try {
@@ -23,6 +26,9 @@ const requestPermissions = async () => {
 };
 
 export default function Home() {
+  const router = useRouter();
+  const { userData } = useContext(UserContext);
+
   useEffect(() => {
     if (Capacitor.isNativePlatform()) {
       const permissionsRequested = localStorage.getItem('permissionsRequested');
@@ -33,6 +39,12 @@ export default function Home() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      router.push('/homewall');
+    }
+  }, [userData]);
 
   return (
     <>
