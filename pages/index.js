@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Capacitor } from '@capacitor/core';
 import { Camera } from '@capacitor/camera';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 
 // Context
 import { UserContext } from '../context/UserContext';
@@ -13,6 +13,7 @@ import Button from '../components/Common/Button';
 
 // Styles
 import styles from './index.module.scss';
+import ScreenLoading from '../components/Common/LoadingScreen';
 
 const requestPermissions = async () => {
   try {
@@ -28,6 +29,7 @@ const requestPermissions = async () => {
 export default function Home() {
   const router = useRouter();
   const { userData } = useContext(UserContext);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
     if (Capacitor.isNativePlatform()) {
@@ -43,8 +45,14 @@ export default function Home() {
   useEffect(() => {
     if (userData) {
       router.push('/homewall');
+    } else {
+      setIsCheckingAuth(false);
     }
   }, [userData]);
+
+  if (isCheckingAuth) {
+    return <ScreenLoading />;
+  }
 
   return (
     <>
