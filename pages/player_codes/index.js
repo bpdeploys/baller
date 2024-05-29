@@ -35,7 +35,7 @@ export default function PlayerCodes() {
 
   useEffect(() => {
     startLoading();
-    const teamId = userData.team.id;
+    const teamId = userData?.team?.id;
     getProxyCodes(teamId)
       .then((data) => {
         setProxyCodes(data);
