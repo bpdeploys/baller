@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SquadProvider } from '../context/SquadContext';
 import TeamCreationProvider from '../context/TeamContext';
 import UserProvider from '../context/UserContext';
+import Script from 'next/script';
 
 const futuraBook = localFont({ src: '../public/assets/fonts/futura-book.ttf' });
 
@@ -16,6 +17,10 @@ function MyApp({ Component, pageProps }) {
         <TeamCreationProvider>
           <SquadProvider>
             <ToastContainer />
+            <Script
+              src="https://cloud.umami.is/script.js"
+              data-website-id="47f28678-a24c-45b2-a892-d64f3ec9869e"
+            />
             <main className={futuraBook.className}>
               <Component {...pageProps} />
             </main>
