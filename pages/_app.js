@@ -20,6 +20,9 @@ function MyApp({ Component, pageProps }) {
             <Script
               src="https://cloud.umami.is/script.js"
               data-website-id="47f28678-a24c-45b2-a892-d64f3ec9869e"
+              strategy="afterInteractive"
+              onLoad={() => console.log('Umami script loaded successfully')}
+              onError={(e) => console.error('Umami script failed to load', e)}
             />
             <main className={futuraBook.className}>
               <Component {...pageProps} />
