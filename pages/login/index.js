@@ -114,7 +114,12 @@ export default function Login() {
             />
           </div>
           <div className={styles.login__button}>
-            <Button text="Login" color="white" type="submit" />
+            <Button
+              text="Login"
+              color="white"
+              type="submit"
+              data-umami-event="Login button"
+            />
             <div>
               <span>Don't have an account?</span>
               <Link href="/register">Sign Up</Link>
