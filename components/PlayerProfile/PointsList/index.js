@@ -6,7 +6,7 @@ const StatsItem = ({ label, value, value2, img }) => (
     <div>
       {img && (
         <img
-          src={'/assets/imgs/svgs/dimitriProfilePlaceholder.svg'}
+          src={'/assets/imgs/pngs/playerimg.png'}
           alt="Stat Image"
           width={35}
           height={35}

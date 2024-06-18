@@ -5,7 +5,7 @@ const BASE_URL = 'https://bp-prod-api.com/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 30000,
+  timeout: 80000,
 });
 
 // GET MODEL
@@ -241,5 +241,27 @@ export const redeemProxyPlayer = async (playerProfile) => {
   } catch (error) {
     console.error(error);
     throw new Error('An error occurred while redeeming your player profile');
+  }
+};
+
+export const fetchPlayerStats = async (playerId, seasonId) => {
+  try {
+    const response = await api.get(
+      `/queries/type-1?player_id=${playerId}&season_id=${seasonId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while fetching player stats');
+  }
+};
+
+export const fetchPlayerProfile = async (playerId) => {
+  try {
+    const response = await api.get(`/players/${playerId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while fetching player profile');
   }
 };

@@ -2,9 +2,14 @@ import { useRouter } from 'next/router';
 
 // Styles
 import styles from './hero.module.scss';
+import Flag from 'react-world-flags';
+import { countryToAlpha2 } from 'country-to-iso';
 
-const ProfileHero = () => {
+const ProfileHero = ({ data }) => {
   const router = useRouter();
+  const countryCode = countryToAlpha2(data.user.nationality.country);
+
+  console.log(countryCode);
 
   return (
     <div className={styles.hero}>
@@ -22,7 +27,11 @@ const ProfileHero = () => {
         <div className={styles.heroLeft}>
           <div className={styles.profileImage}>
             <img
-              src="/assets/imgs/svgs/dimitriProfilePlaceholder.svg"
+              src={
+                data.user.first_name == 'Dimitri'
+                  ? '/assets/imgs/svgs/dimitriProfilePlaceholder.svg'
+                  : '/assets/imgs/pngs/playerimg.png'
+              }
               alt="User profile image"
               width={100}
               height={100}
@@ -38,16 +47,18 @@ const ProfileHero = () => {
           </div>
         </div>
         <div className={styles.heroMid}>
-          <h1>Dimitri Gbo</h1>
-          <h4>Midfielder</h4>
-          <img
-            src="/assets/imgs/svgs/flagPlaceholder.svg"
-            alt="User profile image"
+          <h1>
+            {data.user.first_name} {data.user.last_name}
+          </h1>
+          <h4>{data.playing_position.playing_position}</h4>
+          <Flag
+            code={countryCode}
+            alt={`${data.user.nationality.country} flag`}
             width={31}
             height={17}
           />
         </div>
-        <h3 className={styles.heroNumber}>10</h3>
+        <h3 className={styles.heroNumber}>{data.squad_number[0].number}</h3>
       </div>
     </div>
   );

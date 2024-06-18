@@ -86,22 +86,54 @@ export default function CreateSquad() {
     };
 
     try {
-      const response = await createProxyPlayerSquad(payload);
-      if (response) {
-        toast.success('Your squad has been created!');
-        router.push('/player_codes');
-      } else {
-        toast.error('Something went wrong');
-      }
+      await createProxyPlayerSquad(payload);
+      toast.success('Your squad has been created!');
+      router.push('/player_codes');
     } catch (error) {
       stopLoading();
+
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        switch (error.response.status) {
+          case 400:
+            toast.error(
+              'Bad request. Please check the squad data and try again.'
+            );
+            break;
+          case 401:
+            toast.error('Unauthorized. Please log in and try again.');
+            break;
+          case 403:
+            toast.error(
+              'Forbidden. You do not have permission to create this squad.'
+            );
+            break;
+          case 404:
+            toast.error('API endpoint not found.');
+            break;
+          case 500:
+            toast.error('Internal server error. Please try again later.');
+            break;
+          default:
+            toast.error('An unexpected error occurred.');
+        }
+      } else if (error.request) {
+        // Request was made but no response received
+        toast.error(
+          'No response from the server. Please check your network connection.'
+        );
+      } else {
+        // Something else caused the error
+        toast.error(`Error: ${error.message}`);
+      }
+
       if (error.message === 'The request timed out') {
         localStorage.setItem('squadListBackup', JSON.stringify(squadList));
         toast.error(
           'Request timed out. Your squad data has been saved locally. Please try again later.'
         );
       } else {
-        toast.error('Something went wrong');
+        toast.error('An unexpected error occurred. Please try again later.');
       }
     } finally {
       stopLoading();

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Styles
 import styles from './playerprofile.module.scss';
@@ -14,9 +14,36 @@ import StatsList from '../../components/PlayerProfile/StatsList';
 import ProfileDivider from '../../components/PlayerProfile/Divider';
 import StatsItem from '../../components/PlayerProfile/SingleStat';
 import ProfileOverview from '../../components/PlayerProfile/ProfileOverview';
+import { useUserData } from '../../context/UserContext';
+import { useLoading } from '../../utils/hooks/useLoading';
+import { fetchPlayerProfile } from '../../services/api';
+import ScreenLoading from '../../components/Common/LoadingScreen';
+import { useHasMounted } from '../../utils/hooks/useHasMounted';
 
 export default function PlayerProfile() {
   const [activeTab, setActiveTab] = useState('stats');
+  const { userData } = useUserData();
+  const hasMounted = useHasMounted();
+
+  const [playerProfile, setPlayerProfile] = useState(null);
+
+  const { isLoading, startLoading, stopLoading } = useLoading();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      startLoading();
+      try {
+        const profileData = await fetchPlayerProfile(userData.realId);
+        setPlayerProfile(profileData);
+      } catch (error) {
+        console.error('Error fetching player data:', error);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -142,6 +169,10 @@ export default function PlayerProfile() {
     </>
   );
 
+  if (isLoading || !userData || !hasMounted) {
+    return <ScreenLoading />;
+  }
+
   return (
     <>
       <Head>
@@ -155,7 +186,7 @@ export default function PlayerProfile() {
           alt="Gray lightning"
         />
         <ProfileHeader />
-        <ProfileHero />
+        <ProfileHero data={playerProfile} />
         <ProfileNavButtons
           activeTab={activeTab}
           onTabChange={handleTabChange}

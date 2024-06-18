@@ -51,22 +51,17 @@ export default function Login() {
       clearUserData();
       const response = await loginRequest(loginCredentials);
       if (response.key) {
-        const roles = ['venue_manager', 'player', 'coach', 'referee'];
-        let userData = null;
-
-        for (let role of roles) {
-          if (response[role] && response[role].length > 0) {
-            userData = response[role][0].user;
-            break;
-          }
-        }
-
-        if (userData) {
+        if (response.player && response.player.length > 0) {
+          const playerData = response.player[0];
+          const userData = {
+            ...playerData.user,
+            realId: playerData.id,
+          };
           updateUserData(userData);
           localStorage.setItem('token', response.key);
           router.push('/homewall');
         } else {
-          toast.error('No user data found for any role');
+          toast.error('Please use a player account');
         }
       } else {
         toast.error('Something went wrong');
