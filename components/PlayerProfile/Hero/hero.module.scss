@@ -32,10 +32,25 @@
       z-index: 10;
       position: relative;
       margin: 10px 0 0 10px;
+
       .profileImage {
         margin-bottom: 25px;
+
         img {
           border-radius: 50%;
+        }
+
+        .initialsCircle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100px;
+          height: 100px;
+          background-color: #fff;
+          border-radius: 50%;
+          font-size: 36px;
+          font-weight: bold;
+          color: #1361a9;
         }
       }
     }

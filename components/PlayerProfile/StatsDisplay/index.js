@@ -13,7 +13,7 @@ const StatsDisplay = ({ stats }) => {
     <div className={styles.statsDisplay}>
       {stats.map((stat, index) => (
         <>
-          <Stat key={stat.title} title={stat.title} value={stat.value} />
+          <Stat key={index} title={stat.title} value={stat.value} />
           {index < stats.length - 1 && <div className={styles.divider}></div>}
         </>
       ))}

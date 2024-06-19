@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import styles from './header.module.scss';
 import useToggle from '../../../utils/hooks/useToggle';
 import SideMenu from '../SideMenu';
+import { useUserData } from '../../../context/UserContext';
 
 /**
  * Profile Header component
@@ -12,9 +13,10 @@ import SideMenu from '../SideMenu';
  *
  * @returns {React.Element} A header element
  */
-const ProfileHeader = ({ shadow = true, onMenuClick }) => {
+const ProfileHeader = ({ shadow = true, onMenuClick, playingPosition }) => {
   const router = useRouter();
   const [isMenuOpen, toggleMenu] = useToggle();
+  const { userData } = useUserData();
 
   return (
     <>
@@ -33,15 +35,7 @@ const ProfileHeader = ({ shadow = true, onMenuClick }) => {
             height={18}
             onClick={toggleMenu}
           />
-
-          <img
-            className={styles.picture}
-            src="/assets/imgs/svgs/profileImgPlaceholder.svg"
-            alt="Baller Logo"
-            width={40}
-            height={40}
-            onClick={() => {}}
-          />
+          <div className={styles.playingPosition}>{playingPosition}</div>
         </div>
       </header>
       <SideMenu isOpen={isMenuOpen} onClose={toggleMenu} />

@@ -66,8 +66,8 @@ const SideMenu = ({ isOpen, onClose }) => {
         <div className={styles.sideMenu__links}>
           <nav>
             <ul>
-              {links.map((link) => (
-                <li key={link.title}>
+              {links.map((link, index) => (
+                <li key={index}>
                   <Link href={link.path}>{link.title}</Link>
                 </li>
               ))}

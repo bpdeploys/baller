@@ -10,7 +10,7 @@ import Link from 'next/link';
  *
  * @returns {React.Element} A Squad teammate info element
  */
-const TeamBox = ({ link }) => {
+const TeamBox = ({ playerTeam, link }) => {
   return (
     <div className={styles.teamBox}>
       <h4>Team</h4>
@@ -22,7 +22,7 @@ const TeamBox = ({ link }) => {
               alt="Up competition"
             />
             <div>
-              <span>Chelsea</span>
+              <span>{playerTeam}</span>
               <small>Debut: 12/03/23</small>
             </div>
           </div>
@@ -33,7 +33,7 @@ const TeamBox = ({ link }) => {
           </div>
         </div>
       </div>
-      <Link href={link || '/'} className={styles.teamBox__link}>
+      <Link href={link} className={styles.teamBox__link}>
         <img
           src="/assets/imgs/svgs/blueLinkArrow.svg"
           alt="View team profile link"

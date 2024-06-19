@@ -1,3 +1,5 @@
+import positionsData from '../data/positions.json';
+
 // Function to convert a string to PascalCase
 export function convertToPascalCase(input) {
   // Remove accents and special characters
@@ -79,3 +81,8 @@ export function pickTextColorBasedOnBgColorAdvanced(
   var L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
   return L > 0.179 ? darkColor : lightColor;
 }
+
+export const getPlayingPositionById = (id) => {
+  const position = positionsData.find((p) => p.id === id);
+  return position ? position.abbreviated : null;
+};

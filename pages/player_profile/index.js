@@ -19,6 +19,7 @@ import { useLoading } from '../../utils/hooks/useLoading';
 import { fetchPlayerProfile } from '../../services/api';
 import ScreenLoading from '../../components/Common/LoadingScreen';
 import { useHasMounted } from '../../utils/hooks/useHasMounted';
+import { getPlayingPositionById } from '../../utils/functions';
 
 export default function PlayerProfile() {
   const [activeTab, setActiveTab] = useState('stats');
@@ -137,6 +138,10 @@ export default function PlayerProfile() {
     { label: 'Liverpool', value: 2 },
   ];
 
+  const playingPosition = getPlayingPositionById(
+    parseInt(playerProfile?.playing_position.id)
+  );
+
   const additionalStats = (
     <>
       {attackingStatsRest.map((stat, index) => (
@@ -185,7 +190,7 @@ export default function PlayerProfile() {
           src="/assets/imgs/svgs/grayLightning.svg"
           alt="Gray lightning"
         />
-        <ProfileHeader />
+        <ProfileHeader playingPosition={playingPosition} />
         <ProfileHero data={playerProfile} />
         <ProfileNavButtons
           activeTab={activeTab}
@@ -197,8 +202,8 @@ export default function PlayerProfile() {
             <div className={styles.matchesWrapper}>
               <h2>Upcoming Fixtures</h2>
               <div className={styles.matches}>
-                {matches.map((match) => (
-                  <MatchCard key={match.opponent} match={match} />
+                {matches.map((match, index) => (
+                  <MatchCard key={index} match={match} />
                 ))}
               </div>
             </div>
@@ -213,7 +218,7 @@ export default function PlayerProfile() {
             <StatsList title="Other Stats" stats={otherStats} />
           </div>
         )}
-        {activeTab === 'overview' && <ProfileOverview />}
+        {activeTab === 'overview' && <ProfileOverview data={playerProfile} />}
       </div>
     </>
   );

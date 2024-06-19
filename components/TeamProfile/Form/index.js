@@ -9,8 +9,8 @@ const Form = ({ forms }) => {
           <div className={styles.teamInfo}>
             <div className={styles.circle} />
             <div>
-              <div>Arsenal</div>
-              <div>33 pts</div>
+              <div>Chelsea</div>
+              <div>20 pts</div>
             </div>
           </div>
           <div className={styles.teamInfo}>

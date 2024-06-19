@@ -18,70 +18,70 @@
     "sport": "Football",
     "pitch_position": "Defender",
     "playing_position": "Right Back",
-    "abbreviated": "D"
+    "abbreviated": "DF"
   },
   {
     "id": 3,
     "sport": "Football",
     "pitch_position": "Defender",
     "playing_position": "Centre Back",
-    "abbreviated": "D"
+    "abbreviated": "DF"
   },
   {
     "id": 4,
     "sport": "Football",
     "pitch_position": "Defender",
     "playing_position": "Left Back",
-    "abbreviated": "D"
+    "abbreviated": "DF"
   },
   {
     "id": 5,
     "sport": "Football",
     "pitch_position": "Midfielder",
     "playing_position": "Defensive Midfielder",
-    "abbreviated": "M"
+    "abbreviated": "MD"
   },
   {
     "id": 6,
     "sport": "Football",
     "pitch_position": "Midfielder",
     "playing_position": "Centre Midfielder",
-    "abbreviated": "M"
+    "abbreviated": "MD"
   },
   {
     "id": 7,
     "sport": "Football",
     "pitch_position": "Midfielder",
     "playing_position": "Attacking Midfielder",
-    "abbreviated": "M"
+    "abbreviated": "MD"
   },
   {
     "id": 8,
     "sport": "Football",
     "pitch_position": "Midfielder",
     "playing_position": "Left Winger",
-    "abbreviated": "M"
+    "abbreviated": "MD"
   },
   {
     "id": 9,
     "sport": "Football",
     "pitch_position": "Midfielder",
     "playing_position": "Right Winger",
-    "abbreviated": "M"
+    "abbreviated": "MD"
   },
   {
     "id": 10,
     "sport": "Football",
     "pitch_position": "Striker",
     "playing_position": "False Nine",
-    "abbreviated": "F"
+    "abbreviated": "ST"
   },
   {
     "id": 11,
     "sport": "Football",
     "pitch_position": "Striker",
     "playing_position": "Striker",
-    "abbreviated": "F"
+    "abbreviated": "ST"
   },
   {
     "id": 12,

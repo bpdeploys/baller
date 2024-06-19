@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 // Styles
 import styles from './hero.module.scss';
 
-const TeamHero = () => {
+const TeamHero = ({ data }) => {
   const router = useRouter();
 
   return (
@@ -21,19 +21,16 @@ const TeamHero = () => {
         />
         <div className={styles.heroLeft}>
           <div className={styles.profileImage}>
-            <svg
-              width="100"
-              height="100"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="50" cy="50" r="50" fill="#D9D9D9" />
-            </svg>
+            <img
+              src="https://guessthefootballplayer.com/Js/placeholder3.png"
+              alt="User profile image"
+              width={100}
+              height={100}
+            />
           </div>
         </div>
         <div className={styles.heroMid}>
-          <h1>Chelsea</h1>
+          <h1>{data.team_name}</h1>
         </div>
       </div>
     </div>

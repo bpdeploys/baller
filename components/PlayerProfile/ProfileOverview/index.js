@@ -27,12 +27,12 @@ const playerInfo = [
   { label: 'Team', value: 'Chelsea' },
 ];
 
-const ProfileOverview = () => {
+const ProfileOverview = ({ data }) => {
   return (
     <section className={styles.overview}>
       <h4 className={styles.title}>Player Overview</h4>
       <div className={styles.teamInfo}>
-        <TeamBox link={true ? '/select_sports_provider' : '/create_team'} />
+        <TeamBox playerTeam={data.teams[0].team_name} link={'/team_profile'} />
       </div>
       <PlayerInfo info={playerInfo} style={{ marginTop: '40px' }} />
       <TagList

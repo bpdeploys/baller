@@ -34,12 +34,17 @@
       margin: 10px 0 0 10px;
       .profileImage {
         margin-bottom: 25px;
+
+        img {
+          background: #fff;
+          border-radius: 50%;
+        }
       }
     }
 
     .heroMid {
       z-index: 10;
-      width: 109px;
+      width: 250px;
       margin: 10px 0 0 15px;
 
       h1,

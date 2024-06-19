@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router';
-
-// Styles
 import styles from './hero.module.scss';
 import Flag from 'react-world-flags';
 import { countryToAlpha2 } from 'country-to-iso';
@@ -10,6 +8,11 @@ const ProfileHero = ({ data }) => {
   const countryCode = countryToAlpha2(data.user.nationality.country);
 
   console.log(countryCode);
+
+  const getInitials = (firstName, lastName) => {
+    const initials = firstName.charAt(0) + lastName.charAt(0);
+    return initials.toUpperCase();
+  };
 
   return (
     <div className={styles.hero}>
@@ -26,16 +29,18 @@ const ProfileHero = ({ data }) => {
         />
         <div className={styles.heroLeft}>
           <div className={styles.profileImage}>
-            <img
-              src={
-                data.user.first_name == 'Dimitri'
-                  ? '/assets/imgs/svgs/dimitriProfilePlaceholder.svg'
-                  : '/assets/imgs/pngs/playerimg.png'
-              }
-              alt="User profile image"
-              width={100}
-              height={100}
-            />
+            {data.user.first_name === 'Dimitri' ? (
+              <img
+                src="/assets/imgs/svgs/dimitriProfilePlaceholder.svg"
+                alt="User profile image"
+                width={100}
+                height={100}
+              />
+            ) : (
+              <div className={styles.initialsCircle}>
+                {getInitials(data.user.first_name, data.user.last_name)}
+              </div>
+            )}
           </div>
           <div className={styles.playerStatus}>
             <img

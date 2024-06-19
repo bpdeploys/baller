@@ -2,15 +2,7 @@
 import styles from './teambox.module.scss';
 import Link from 'next/link';
 
-/**
- * Squad teammate info component
- *
- * @param {array} data An array of codes with their assigned players to display in the table
- * @param {boolean} empty Whether or not the element should be empty
- *
- * @returns {React.Element} A Squad teammate info element
- */
-const TeamBox = ({ link }) => {
+const TeamBox = ({ link, teamName }) => {
   return (
     <div className={styles.teamBox}>
       <h4>Team</h4>
@@ -22,7 +14,7 @@ const TeamBox = ({ link }) => {
               alt="Up competition"
             />
             <div>
-              <span>Chelsea</span>
+              <span>{teamName}</span>
               <small>Debut: 12/03/23</small>
             </div>
           </div>

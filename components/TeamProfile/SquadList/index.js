@@ -29,12 +29,20 @@ const StatsItem = ({ label, value, img, status, captain }) => (
   </div>
 );
 
-const SquadList = ({ title, players, style }) => {
+const SquadList = ({
+  teamName,
+  players,
+  style,
+  playersQuantity,
+  notRedeemedPlayersCount,
+}) => {
   return (
     <div className={styles.squadList} style={style}>
       <div className={styles.title}>
-        <h3>Chelsea Squad</h3>
-        <span>9 players | 2 NOT REDEEMED</span>
+        <h3>{teamName} Squad</h3>
+        <span>
+          {playersQuantity} players | {notRedeemedPlayersCount} NOT REDEEMED
+        </span>
       </div>
       {players.map((player) => (
         <StatsItem

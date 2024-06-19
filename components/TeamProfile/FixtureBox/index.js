@@ -10,7 +10,7 @@ import Link from 'next/link';
  *
  * @returns {React.Element} A Squad teammate info element
  */
-const FixtureBox = ({ link }) => {
+const FixtureBox = ({ link, teamName }) => {
   return (
     <div className={styles.fixtureBox}>
       <svg viewBox="0 0 364 112" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@ const FixtureBox = ({ link }) => {
       </svg>
 
       <div className={styles.fixtureBox__content}>
-        <small>Chelsea vs</small>
+        <small>{teamName} vs</small>
         <br />
         <h3>Manchester United</h3>
         <span>19/08/23</span>
