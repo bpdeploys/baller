@@ -11,12 +11,12 @@ import AffiliateCard from '../../components/Homewall/AffiliateCard';
 import useToggle from '../../utils/hooks/useToggle';
 import SideMenu from '../../components/Layout/SideMenu';
 import { useUserData } from '../../context/UserContext';
+import { useRouter } from 'next/router';
 
-export default function SelectSport() {
+export default function Homewall() {
   const [isMenuOpen, toggleMenu] = useToggle();
   const { userData } = useUserData();
-
-  console.log(userData);
+  const router = useRouter();
 
   return (
     <>

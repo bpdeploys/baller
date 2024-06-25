@@ -1,0 +1,23 @@
+<svg width="390" height="393" viewBox="0 0 390 393" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H390L448 390H-58L0 0Z" fill="#36A310"/>
+<path d="M-0.139097 0H390.276L400.269 69H-10.2573L-0.139097 0Z" fill="#31BD00"/>
+<path d="M-20.0742 135H410.087L420.223 203H-30.1924L-20.0742 135Z" fill="#31BD00"/>
+<path d="M-40.6058 273H430.604L440.71 341H-50.7188L-40.6058 273Z" fill="#31BD00"/>
+<line x1="6.99365" y1="7.99585" x2="382.994" y2="7.99585" stroke="white" stroke-width="3"/>
+<line x1="-21" y1="201.5" x2="411" y2="201.5" stroke="white" stroke-width="3"/>
+<line x1="8.47653" y1="6.72186" x2="-50.2858" y2="392.27" stroke="white" stroke-width="3"/>
+<line x1="382.477" y1="6.77481" x2="441.027" y2="392.355" stroke="white" stroke-width="3"/>
+<line x1="80" y1="68.5" x2="314" y2="68.5" stroke="white" stroke-width="3"/>
+<line x1="90.4765" y1="6.72186" x2="80.9841" y2="69.0026" stroke="white" stroke-width="3"/>
+<line x1="304.489" y1="6.81709" x2="312.171" y2="69.3469" stroke="white" stroke-width="3"/>
+<line x1="146.684" y1="34.7552" x2="246.447" y2="34.7552" stroke="white" stroke-width="3"/>
+<line x1="150.494" y1="7.13101" x2="147.941" y2="36.2564" stroke="white" stroke-width="3"/>
+<line x1="245.496" y1="6.88616" x2="247.729" y2="36.2299" stroke="white" stroke-width="3"/>
+<line y1="-1.5" x2="293" y2="-1.5" transform="matrix(1 0 0 -1 50.499 340)" stroke="white" stroke-width="3"/>
+<line x1="46.7635" y1="390.327" x2="51.1213" y2="340.517" stroke="white" stroke-width="3"/>
+<line x1="346.505" y1="390.115" x2="342.663" y2="340.263" stroke="white" stroke-width="3"/>
+<line y1="-1.5" x2="99.763" y2="-1.5" transform="matrix(1 0 0 -1 147.182 373.745)" stroke="white" stroke-width="3"/>
+<line y1="-1.5" x2="15" y2="-1.5" transform="matrix(0.0697565 -0.997564 -0.997564 -0.0697565 146.203 390.02)" stroke="white" stroke-width="3"/>
+<line y1="-1.5" x2="15" y2="-1.5" transform="matrix(-0.052336 -0.99863 -0.99863 0.052336 245.385 390.022)" stroke="white" stroke-width="3"/>
+<path d="M265.5 203C265.5 235.1 235.057 261.5 197 261.5C158.943 261.5 128.5 235.1 128.5 203C128.5 170.9 158.943 144.5 197 144.5C235.057 144.5 265.5 170.9 265.5 203Z" stroke="white" stroke-width="3"/>
+</svg>

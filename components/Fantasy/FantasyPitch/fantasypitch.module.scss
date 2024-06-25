@@ -1,0 +1,62 @@
+.fantasyPitch {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pitch {
+  width: 100%;
+  height: auto;
+}
+
+.fantasyPlayer {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.gk {
+  top: 10%;
+  left: 50%;
+}
+
+.def1 {
+  top: 30%;
+  left: 25%;
+}
+
+.def2 {
+  top: 30%;
+  left: 50%;
+}
+
+.def3 {
+  top: 30%;
+  left: 75%;
+}
+
+.mid1 {
+  top: 50%;
+  left: 25%;
+}
+
+.mid2 {
+  top: 50%;
+  left: 50%;
+}
+
+.mid3 {
+  top: 50%;
+  left: 75%;
+}
+
+.st1 {
+  top: 70%;
+  left: 35%;
+}
+
+.st2 {
+  top: 70%;
+  left: 65%;
+}

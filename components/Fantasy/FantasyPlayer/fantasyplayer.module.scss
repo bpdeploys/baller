@@ -1,0 +1,81 @@
+.fantasyPlayer {
+  position: relative;
+  width: 70px;
+
+  span {
+    position: absolute;
+    bottom: 10px;
+    left: 47%;
+    height: fit-content;
+    font-size: 12px;
+    transform: translateX(-50%);
+    text-wrap: nowrap;
+    width: 50px;
+    text-align: center;
+    overflow: hidden;
+  }
+}
+
+.selected {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  border-radius: 50%;
+}
+
+.gk {
+  position: absolute;
+  top: -7%;
+  left: 50%;
+  transform: translateX(-40%);
+}
+
+.def1 {
+  position: absolute;
+  top: 17%;
+  left: 16%;
+}
+
+.def2 {
+  position: absolute;
+  top: 11%;
+  left: 43%;
+}
+
+.def3 {
+  position: absolute;
+  top: 17%;
+  left: 70%;
+}
+
+.mid1 {
+  position: absolute;
+  top: 43%;
+  left: 0;
+}
+
+.mid2 {
+  position: absolute;
+  top: 33%;
+  left: 43%;
+}
+
+.mid3 {
+  position: absolute;
+  top: 43%;
+  right: 0;
+}
+
+.st1 {
+  position: absolute;
+  top: 60%;
+  left: 23%;
+}
+
+.st2 {
+  position: absolute;
+  top: 60%;
+  right: 21%;
+}

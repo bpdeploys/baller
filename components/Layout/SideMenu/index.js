@@ -17,6 +17,7 @@ const links = [
   { title: 'Team Profile', path: '/team_profile' },
   { title: 'Homewall', path: '/homewall' },
   { title: 'League Page', path: '' },
+  { title: 'Fantasy Demo', path: '/fantasy/fantasy_delight' },
   { title: 'Settings', path: '/logout' },
 ];
 

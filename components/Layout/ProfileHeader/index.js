@@ -10,13 +10,12 @@ import { useUserData } from '../../../context/UserContext';
  * Profile Header component
  *
  * @param {boolean} shadow Whether or not the header should have a shadow (default: true)
+ * @param {string} playingPosition Playing position to display at the right part of the header
  *
  * @returns {React.Element} A header element
  */
-const ProfileHeader = ({ shadow = true, onMenuClick, playingPosition }) => {
-  const router = useRouter();
+const ProfileHeader = ({ shadow = true, playingPosition }) => {
   const [isMenuOpen, toggleMenu] = useToggle();
-  const { userData } = useUserData();
 
   return (
     <>
@@ -35,7 +34,9 @@ const ProfileHeader = ({ shadow = true, onMenuClick, playingPosition }) => {
             height={18}
             onClick={toggleMenu}
           />
-          <div className={styles.playingPosition}>{playingPosition}</div>
+          {playingPosition && (
+            <div className={styles.playingPosition}>{playingPosition}</div>
+          )}
         </div>
       </header>
       <SideMenu isOpen={isMenuOpen} onClose={toggleMenu} />

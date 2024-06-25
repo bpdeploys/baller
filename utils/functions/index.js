@@ -86,3 +86,21 @@ export const getPlayingPositionById = (id) => {
   const position = positionsData.find((p) => p.id === id);
   return position ? position.abbreviated : null;
 };
+
+//Abbreviate player names
+export function abbreviatePlayerName(name, maxLength = 8) {
+  // Split the name into words
+  const words = name.split(' ');
+
+  if (words.length === 1 && words[0].length <= maxLength) {
+    return words[0]; // Return the original name if it's within the limit
+  } else {
+    // Generate initials from the words
+    const initials = words.map((word) => word.charAt(0)).join('');
+
+    // Return initials if they are within the limit, otherwise truncate
+    return initials.length <= maxLength
+      ? initials
+      : initials.substring(0, maxLength);
+  }
+}
